@@ -1,0 +1,50 @@
+﻿@using WebShop.Data
+@model IEnumerable<ApplicationUser>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>All Users</h1>
+<a asp-action="Create" class="btn-primary btn-primary">Create user</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>UsernName</th>
+            <th>Email</th>
+            <th>Avatar</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.UserName</td>
+                <td>@user.Email</td>
+                <td>
+                    @if (user.Avatar != null)
+                    {
+                        <img style="width:150px;height:150px;" src="data:image/*;base64,@Convert.ToBase64String(user.Avatar)" />
+                    }
+                    else
+                    {
+                        <span>No avatar available!</span>                        
+                    }
+                </td>
+                <td>
+                    <a asp-action="Update" asp-route-id="@user.Id" class="btn btn-sm btn-primary">Update</a>
+                </td>
+                <td>
+                    <form asp-action="Delete" asp-route-id="@user.Id" method="post">
+                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
