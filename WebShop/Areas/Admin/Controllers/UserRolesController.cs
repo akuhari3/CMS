@@ -37,8 +37,6 @@ namespace WebShop.Areas.Admin.Controllers
                     Email = user.Email,
                     Roles = new List<string>(await _userManager.GetRolesAsync(user))
                 };
-                // alternativa dohvati u linijama iznad - za role
-                //userWithRoles.Roles = new List<string>(await _userManager.GetRolesAsync(user));
 
                 usersWithRoles.Add(userWithRoles);
             }

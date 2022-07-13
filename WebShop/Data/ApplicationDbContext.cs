@@ -12,6 +12,19 @@ namespace WebShop.Data
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        //protected override void OnModelCreating(ModelBuilder builder)
+        //{
+        //    builder.Entity<Product>().HasData
+        //        (
+        //            new Product
+        //            {
+        //                Id = 1,
+        //                ProductName = "Test Product" //priprema
+        //            }
+        //        );
+        //    base.OnModelCreating(builder);
+        //}
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

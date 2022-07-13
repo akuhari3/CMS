@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 using WebShop.Data;
+using WebShop.Interfaces;
 using WebShop.Models;
+using WebShop.Repositories;
 
 namespace WebShop
 {
@@ -16,9 +18,10 @@ namespace WebShop
             // Add services to the container.
             builder.Services.AddSession();
             builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+            builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 
-            
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
@@ -74,6 +77,8 @@ namespace WebShop
             app.UseAuthorization();
 
             app.UseSession();
+
+            app.MapControllers();
 
             app.MapControllerRoute(
                 name: "Admin",
