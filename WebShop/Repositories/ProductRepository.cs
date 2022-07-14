@@ -2,6 +2,7 @@
 using WebShop.Data;
 using WebShop.Interfaces;
 using WebShop.Models;
+using WebShop.Models.ViewModels;
 
 namespace WebShop.Repositories
 {
@@ -34,9 +35,28 @@ namespace WebShop.Repositories
             return product;
         }
 
-        public void AddProduct(Product product)
+        public void AddProduct(ProductViewModel product)
         {
-            _dbContext.Product.Add(product);
+            Product p = new Product()
+            {
+                ProductName = product.ProductName,
+                ProductDescription = product.ProductDescription,
+                Price = product.Price,
+                Quantity = product.Quantity
+            };
+
+            if (product.ProductImage != null)
+            {
+                using (var stream = new MemoryStream())
+                {
+                    product.ProductImage.CopyTo(stream);
+                    var file = stream.ToArray();
+
+                    p.ProductImage = file;
+                }
+            }
+
+            _dbContext.Product.Add(p);
             _dbContext.SaveChanges();
         }
 
@@ -57,9 +77,28 @@ namespace WebShop.Repositories
             return category;
         }
 
-        public void AddCategory(Category category)
+        public void AddCategory(CategoryViewModel category)
         {
-            _dbContext.Category.Add(category);
+
+            Category cat = new Category()
+            {
+                CategoryName = category.CategoryName,
+                CategoryDescription = category.CategoryDescription,
+            };
+
+            if (category.CategoryImage != null)
+            {
+                using (var stream = new MemoryStream())
+                {
+                    category.CategoryImage.CopyTo(stream);
+                    var file = stream.ToArray();
+
+                    cat.CategoryImage = file;
+                }
+            }
+
+            
+            _dbContext.Category.Add(cat);
             _dbContext.SaveChanges();
         }
 

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using WebShop.Models;
+using WebShop.Models.ViewModels;
 
 namespace WebShop.Interfaces
 {
@@ -7,10 +8,10 @@ namespace WebShop.Interfaces
     {
         IEnumerable<Product> GetProducts();
         Product GetProductById(int id);
-        void AddProduct(Product product);
+        void AddProduct(ProductViewModel product);
         IEnumerable<Category> GetCategories();
         Category GetCategoryById(int id);
-        void AddCategory(Category category);
+        void AddCategory(CategoryViewModel category);
         void UpdateCategory(Category category);
         void DeleteCategory(int id);
 
