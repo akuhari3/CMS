@@ -41,8 +41,13 @@ namespace WebShop.Areas.Admin.Controllers
             {
                 ApplicationUser appUser = new ApplicationUser
                 {
-                    UserName = user.Name,
-                    Email = user.Email
+                    UserName = user.Email,
+                    Email = user.Email,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Timezone = user.Timezone,
+                    Active = user.Active,
+
                 };
 
                 if (user.Avatar != null)
