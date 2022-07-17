@@ -5,6 +5,7 @@ using WebShop.Data;
 using WebShop.Interfaces;
 using WebShop.Models;
 using WebShop.Models.ViewModels;
+using Microsoft.AspNetCore.Hosting;
 
 namespace WebShop.Areas.Admin.Controllers
 {
@@ -12,16 +13,16 @@ namespace WebShop.Areas.Admin.Controllers
     public class ProductController : Controller
     {
         #region Fields
-
         private readonly IProductRepository _productRepository;
 
         #endregion
-
+        
         #region Constructors
 
         public ProductController(IProductRepository productRepository)
         {
             _productRepository = productRepository;
+            
         }
 
         #endregion
@@ -62,6 +63,7 @@ namespace WebShop.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                string fileName = ProcessUploadedFile(product);
                 _productRepository.AddProduct(product);
                 return RedirectToAction(nameof(Index));
             }
@@ -73,26 +75,41 @@ namespace WebShop.Areas.Admin.Controllers
         public IActionResult Edit(int id)
         {
             var product = _productRepository.GetProductById(id);
-            return View(product);
+            ProductViewModel productViewModel = new ProductViewModel()
+            {
+                ProductName = product.ProductName,
+                ProductDescription = product.ProductDescription,
+                Price = product.Price,
+                Quantity = product.Quantity
+
+            };
+
+            if (product.ProductImage != null)
+            {
+                ProcessUploadedFile(productViewModel);
+            }
+
+            return View(productViewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, Category product)
+        public IActionResult Edit(int id, ProductViewModel product)
         {
             if (ModelState.IsValid)
             {
-                _productRepository.up(category);
+                ProcessUploadedFile(product);
+                _productRepository.UpdateProduct(product);
                 return RedirectToAction(nameof(Index));
             }
 
-            return View(category);
+            return View(product);
         }
 
         public IActionResult Delete(int id)
         {
-            var category = _productRepository.GetCategoryById(id);
-            return View(category);
+            var product = _productRepository.GetProductById(id);
+            return View(product);
         }
 
         [HttpPost]
@@ -100,12 +117,39 @@ namespace WebShop.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteCategory(int id)
         {
-            var category = _productRepository.GetCategoryById(id);
-            _productRepository.DeleteCategory(id);
+            var category = _productRepository.GetProductById(id);
+            _productRepository.DeleteProduct(id);
 
             return RedirectToAction(nameof(Index));
         }
 
+        #endregion
+
+        #region File Management
+
+        private string ProcessUploadedFile(ProductViewModel model)
+        {
+            string fileName = null;
+            if (model.ProductImage != null)
+            {
+                fileName = _productRepository.UploadFile(model);
+            }
+            return fileName;
+        }
+
+        [HttpPost]
+        [ActionName("DeleteProductPhoto")]
+        public IActionResult DeleteProductPhoto(int id)
+        {
+            var product = _productRepository.GetProductById(id);
+            if (product.ProductImage != null)
+            {
+                var pvm = _productRepository.DeleteFile(product);
+                _productRepository.UpdateProduct(pvm);
+            }
+            return RedirectToAction("Details", new { id = product.Id });
+
+        }
 
         #endregion
     }

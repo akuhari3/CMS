@@ -13,21 +13,31 @@ namespace WebShop.Areas.Admin.Controllers
     [Authorize(Roles = "Admin"), Area("Admin")]
     public class CategoryController : Controller
     {
+        #region Fields
         private readonly IProductRepository _productRepository;
+        private readonly ICategoryRepository _categoryRepository;
+        #endregion
 
-        public CategoryController(IProductRepository productRepository)
+        #region Constructors
+
+        public CategoryController(IProductRepository productRepository, ICategoryRepository categoryRepository)
         {
             _productRepository = productRepository;
+            _categoryRepository = categoryRepository;
         }
+
+        #endregion
+
+        #region Category Action Methods
 
         public IActionResult Index()
         {
-            return View(_productRepository.GetCategories());
+            return View(_categoryRepository.GetCategories());
         }
 
         public IActionResult Details(int id)
         {
-            var category = _productRepository.GetCategoryById(id);
+            var category = _categoryRepository.GetCategoryById(id);
             return View(category);
         }
 
@@ -38,11 +48,12 @@ namespace WebShop.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Id, CategoryName, CategoryDescription")] CategoryViewModel category)
+        public IActionResult Create([Bind("Id, CategoryName, CategoryDescription, CategoryImage")] CategoryViewModel category)
         {
             if (ModelState.IsValid)
             {
-                _productRepository.AddCategory(category);
+                ProcessUploadedFile(category);
+                _categoryRepository.AddCategory(category);
                 return RedirectToAction(nameof(Index));
             }
 
@@ -52,17 +63,30 @@ namespace WebShop.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var category = _productRepository.GetCategoryById(id);
-            return View(category);
+            var category = _categoryRepository.GetCategoryById(id);
+            CategoryViewModel categoryViewModel = new CategoryViewModel()
+            {
+                CategoryName = category.CategoryName,
+                CategoryDescription = category.CategoryDescription,
+                
+            };
+
+            if(category.CategoryImage != null)
+            {
+                ProcessUploadedFile(categoryViewModel);
+            }
+
+            return View(categoryViewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, Category category)
+        public IActionResult Edit(int id, CategoryViewModel category)
         {
             if (ModelState.IsValid)
             {
-                _productRepository.UpdateCategory(category);
+                ProcessUploadedFile(category);
+                _categoryRepository.UpdateCategory(category);
                 return RedirectToAction(nameof(Index));
             }
 
@@ -71,7 +95,7 @@ namespace WebShop.Areas.Admin.Controllers
 
         public IActionResult Delete(int id)
         {
-            var category = _productRepository.GetCategoryById(id);
+            var category = _categoryRepository.GetCategoryById(id);
             return View(category);
         }
 
@@ -80,11 +104,39 @@ namespace WebShop.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteCategory(int id)
         {
-            var category = _productRepository.GetCategoryById(id);
-            _productRepository.DeleteCategory(id);
+            var category = _categoryRepository.GetCategoryById(id);
+            _categoryRepository.DeleteCategory(id);
 
             return RedirectToAction(nameof(Index));
         }
 
+        #endregion
+
+        #region File Management
+
+        private string ProcessUploadedFile(CategoryViewModel model)
+        {
+            string fileName = null;
+            if (model.CategoryImage != null)
+            {
+                fileName = _categoryRepository.UploadFile(model);
+            }
+            return fileName;
+        }
+
+        [HttpPost]
+        [ActionName("DeleteCategoryPhoto")]
+        public IActionResult DeleteCategoryPhoto(int id)
+        {
+            var category = _categoryRepository.GetCategoryById(id);
+            if (category.CategoryImage != null)
+            {
+                var cvm = _categoryRepository.DeleteFile(category);
+                _categoryRepository.UpdateCategory(cvm);
+            }
+            return RedirectToAction("Details", new { id = category.Id });
+
+        }
+        #endregion
     }
 }

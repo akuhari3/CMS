@@ -12,7 +12,7 @@ namespace WebShop.Models
         [Required(ErrorMessage = "Category description is required!")]
         [StringLength(200, MinimumLength = 2)]
         public string CategoryDescription { get; set; }
-        public byte[] CategoryImage { get; set; }
+        public string CategoryImage { get; set; }
         [ForeignKey("CategoryId")]
         public List<ProductCategory> ProductCategories { get; set; }
     }

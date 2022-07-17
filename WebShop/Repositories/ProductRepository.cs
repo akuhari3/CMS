@@ -10,14 +10,16 @@ namespace WebShop.Repositories
     {
         #region Fields
 
+        private readonly IWebHostEnvironment _hostingEnvironment;
         private readonly ApplicationDbContext _dbContext;
 
         #endregion
 
         #region Constructors
-        public ProductRepository(ApplicationDbContext dbContext)
+        public ProductRepository(ApplicationDbContext dbContext, IWebHostEnvironment hostingEnvironment)
         {
             _dbContext = dbContext;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         #endregion
@@ -42,138 +44,80 @@ namespace WebShop.Repositories
                 ProductName = product.ProductName,
                 ProductDescription = product.ProductDescription,
                 Price = product.Price,
-                Quantity = product.Quantity
+                Quantity = product.Quantity,
+
             };
 
             if (product.ProductImage != null)
             {
-                using (var stream = new MemoryStream())
-                {
-                    product.ProductImage.CopyTo(stream);
-                    var file = stream.ToArray();
-
-                    p.ProductImage = file;
-                }
+                p.ProductImage = product.ProductImage.FileName;
             }
+
 
             _dbContext.Product.Add(p);
             _dbContext.SaveChanges();
         }
 
-        //edit, delete
-
-        #endregion
-
-        #region Category Repository Implementation
-
-        public IEnumerable<Category> GetCategories()
+        public void UpdateProduct(ProductViewModel productVM)
         {
-            return _dbContext.Category.ToList();
-        }
-
-        public Category GetCategoryById(int id)
-        {
-            var category = _dbContext.Category.FirstOrDefault(p => p.Id == id);
-            return category;
-        }
-
-        public void AddCategory(CategoryViewModel category)
-        {
-
-            Category cat = new Category()
+            Product product = new Product()
             {
-                CategoryName = category.CategoryName,
-                CategoryDescription = category.CategoryDescription,
+                ProductName = productVM.ProductName,
+                ProductDescription = productVM.ProductDescription,
+                Price = productVM.Price,
+                Quantity = productVM.Quantity
             };
+            var image = _dbContext.Product.FirstOrDefault(a => a.Id == productVM.Id);
 
-            if (category.CategoryImage != null)
+            if (productVM.ProductImage != null)
             {
-                using (var stream = new MemoryStream())
-                {
-                    category.CategoryImage.CopyTo(stream);
-                    var file = stream.ToArray();
-
-                    cat.CategoryImage = file;
-                }
+                product.ProductImage = productVM.ProductImage.FileName;
             }
 
-            
-            _dbContext.Category.Add(cat);
+            _dbContext.Update(product);
             _dbContext.SaveChanges();
         }
 
-        public void UpdateCategory(Category category)
-        {
-            _dbContext.Update(category);
-            _dbContext.SaveChanges();
-        }
-
-        public void DeleteCategory(int id)
+        public void DeleteProduct(int id)
         {
 
-            var category = _dbContext.Category.Find(id);
-            if (category != null)
+            var product = _dbContext.Product.Find(id);
+            if (product != null)
             {
-                _dbContext.Category.Remove(category);
+                _dbContext.Product.Remove(product);
                 _dbContext.SaveChanges();
             }
         }
 
         #endregion
 
-        #region Product Category Repository Implementation
-
-        public IEnumerable<ProductCategory> GetProductCategories(int id)
+        #region File Management
+        public string UploadFile(ProductViewModel model)
         {
-            var productCategories = (from prodCat in _dbContext.ProductCategory
-                                     where prodCat.ProductId == id
-                                     select new ProductCategory
-                                     {
-                                         Id = prodCat.Id,
-                                         ProductId = prodCat.ProductId,
-                                         ProductTitle = (from p in _dbContext.Product where p.Id == prodCat.ProductId select p.ProductName).FirstOrDefault(),
-                                         CategoryId = prodCat.CategoryId,
-                                         CategoryTitle = (from c in _dbContext.Category where c.Id == prodCat.CategoryId select c.CategoryName).FirstOrDefault()
-                                     }).ToList();
-
-            return productCategories;
-        }
-
-        public ProductCategory GetProductCategoryById(int id)
-        {
-            var productCategory = _dbContext.ProductCategory.FirstOrDefault(p => p.Id == id);
-            return productCategory;
-        }
-
-        public void AddProductCategory(ProductCategory productCategory)
-        {
-            _dbContext.ProductCategory.Add(productCategory);
-            _dbContext.SaveChanges();
-        }
-
-        public void UpdateProductCategory(ProductCategory productCategory)
-        {
-            _dbContext.ProductCategory.Update(productCategory);
-            _dbContext.SaveChanges();
-        }
-
-        public void DeleteProductCategory(ProductCategory productCategory)
-        {
-            _dbContext.ProductCategory.Remove(productCategory);
-            _dbContext.SaveChanges();
-        }
-
-        #endregion
-
-        #region Categories DDL
-
-        public List<SelectListItem> CategoriesForDropDownList()
-        {
-            return _dbContext.Category.Select(c => new SelectListItem()
+            string uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "images", "products");
+            var fileName = model.ProductImage.FileName;
+            string filePath = Path.Combine(uploadsFolder, fileName);
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
             {
-                Value = c.Id.ToString(),
-                Text = c.CategoryName
-            }).ToList();
+                model.ProductImage.CopyTo(fileStream);
+            }
+
+            return fileName;
+        }
+
+        public ProductViewModel DeleteFile(Product product)
+        {
+            string filePath = Path.Combine(_hostingEnvironment.WebRootPath, "images", "products", product.ProductImage);
+            System.IO.File.Delete(filePath);
+            product.ProductImage = null;
+            ProductViewModel pvm = new ProductViewModel()
+            {
+                ProductName = product.ProductName,
+                ProductDescription = product.ProductDescription,
+                Price = product.Price,
+                Quantity = product.Quantity
+            };
+            return pvm;
         }
 
         #endregion

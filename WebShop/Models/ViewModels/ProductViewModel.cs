@@ -4,6 +4,7 @@ namespace WebShop.Models.ViewModels
 {
     public class ProductViewModel
     {
+        public int Id { get; set; }
         [Required(ErrorMessage = "Product name is required!")]
         [StringLength(200, MinimumLength = 2)]
         public string ProductName { get; set; }

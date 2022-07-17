@@ -18,7 +18,7 @@ namespace WebShop.Models
         [Required(ErrorMessage = "Product price is required!")]
         [Column(TypeName = "decimal(9,2)")]
         public decimal Price { get; set; }
-        public byte[] ProductImage { get; set; }
+        public string ProductImage { get; set; }
         [ForeignKey("ProductId")]
         public List<OrderItem> OrderItems { get; set; }
         [ForeignKey("ProductId")]

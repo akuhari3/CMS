@@ -51,8 +51,7 @@ namespace WebShop.Areas.Admin.Controllers
             if (user == null)
             {
                 ViewBag.Error = $"User with id - {id} cannot be found!";
-                // TODO: Implement not found view
-                return View("NotFound");
+                return View("PageNotFound");
             }
 
             ViewBag.UserName = user.UserName;
