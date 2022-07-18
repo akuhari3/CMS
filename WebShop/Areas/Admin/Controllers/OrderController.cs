@@ -16,14 +16,18 @@ namespace WebShop.Areas.Admin.Controllers
         #region Fields
 
         private readonly IOrderRepository _orderRepository;
+        private readonly IOrderItemRepository _orderItemRepository;
+        private readonly IProductRepository _productRepository;
 
         #endregion
 
         #region Constructors
 
-        public OrderController(IOrderRepository orderRepository)
+        public OrderController(IOrderRepository orderRepository, IOrderItemRepository orderItemRepository, IProductRepository productRepository)
         {
             _orderRepository = orderRepository;
+            _orderItemRepository = orderItemRepository;
+            _productRepository = productRepository;
         }
         #endregion
 
@@ -147,7 +151,7 @@ namespace WebShop.Areas.Admin.Controllers
         {
             ViewBag.OrderId = id;
 
-            ViewBag.Products = _orderRepository.GetProductsForDropDownList();
+            ViewBag.Products = _productRepository.GetProductsForDropDownList();
 
             return View();
         }
@@ -157,7 +161,7 @@ namespace WebShop.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                _orderRepository.CreateOrderItem(orderItem);
+                _orderItemRepository.CreateOrderItem(orderItem);
 
                 return RedirectToAction("Details", new { id = orderItem.OrderId });
             }
@@ -167,8 +171,8 @@ namespace WebShop.Areas.Admin.Controllers
 
         public IActionResult DeleteOrderItem(int id)
         {
-            var orderItem = _orderRepository.GetOrderItemById(id);
-            _orderRepository.DeleteOrderItem(id);
+            var orderItem = _orderItemRepository.GetOrderItemById(id);
+            _orderItemRepository.DeleteOrderItem(id);
 
             return RedirectToAction("Details", new { id = orderItem.OrderId });
         }

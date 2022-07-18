@@ -10,11 +10,8 @@ namespace WebShop.Interfaces
         void AddOrder(Order order);
         void UpdateOrder(Order order);
         void DeleteOrder(int id);
-        void CreateOrderItem(OrderItem orderItem);
-        OrderItem GetOrderItemById(int id);
-        void DeleteOrderItem(int id);
 
         List<SelectListItem> GetUsersForDropDownList();
-        List<SelectListItem> GetProductsForDropDownList();
+        
     }
 }

@@ -121,5 +121,19 @@ namespace WebShop.Repositories
         }
 
         #endregion
+
+        #region DropDownList Product
+        public List<SelectListItem> GetProductsForDropDownList()
+        {
+            return _dbContext.Product.Select(p => new SelectListItem()
+            {
+                Value = p.Id.ToString(),
+                Text = p.ProductName
+
+            }).ToList();
+
+        }
+
+        #endregion
     }
 }

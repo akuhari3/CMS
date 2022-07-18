@@ -36,7 +36,7 @@ namespace WebShop.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            var productsDDL = _orderRepository.GetProductsForDropDownList();
+            var productsDDL = _productRepository.GetProductsForDropDownList();
 
             ViewBag.Products = productsDDL;
             ViewBag.ProductsEntity = _productRepository.GetProducts();

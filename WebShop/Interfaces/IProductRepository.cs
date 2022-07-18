@@ -13,5 +13,6 @@ namespace WebShop.Interfaces
         void DeleteProduct(int id);
         string UploadFile(ProductViewModel model);
         ProductViewModel DeleteFile(Product product);
+        List<SelectListItem> GetProductsForDropDownList();
     }
 }

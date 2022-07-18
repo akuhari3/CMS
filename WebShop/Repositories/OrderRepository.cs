@@ -102,7 +102,7 @@ namespace WebShop.Repositories
 
         #endregion
 
-        #region DropDownLists
+        #region DropDownList Users
 
         public List<SelectListItem> GetUsersForDropDownList()
         {
@@ -114,18 +114,9 @@ namespace WebShop.Repositories
             }).ToList();
 
         }
-
-        public List<SelectListItem> GetProductsForDropDownList()
-        {
-            return _dbContext.Product.Select(p => new SelectListItem()
-            {
-                Value = p.Id.ToString(),
-                Text = p.ProductName
-
-            }).ToList();
-
-        }
-
         #endregion
+
+
+        
     }
 }
