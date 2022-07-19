@@ -1,4 +1,4 @@
-﻿@model Category
+﻿@model WebShop.Models.ViewModels.CategoryViewModel
 @{
     ViewData["Title"] = "Edit";
 }
@@ -8,7 +8,8 @@
 <h4>Category</h4>
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form enctype="multipart/form-data" asp-action="Edit" method="post">
+            @Html.AntiForgeryToken()
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="CategoryName" class="control-label"></label>
@@ -20,10 +21,22 @@
                 <input asp-for="CategoryDescription" class="form-control" />
                 <span asp-validation-for="CategoryDescription" class="text-danger"></span>
             </div>
+            
+            <div class="form-group">
+                <label asp-for="CategoryImage" class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-10">
+                        <div class="custom-file">
+                            <input class="form-control custom-file-input" asp-for="CategoryImage" />
+                            <label class="custom-file-label">Select image</label>
+                        </div>
+                     </div>
+             </div>
+
+
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
-        </form>
+            </form>
     </div>
 </div>
 

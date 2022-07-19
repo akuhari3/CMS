@@ -1,6 +1,7 @@
 ﻿@model Category
 @{
     ViewData["Title"] = "Details";
+    var photoPath = "~/images/categories/" + (Model.CategoryImage ?? "no-photo.png");
 }
 
 <h1>Details</h1>
@@ -12,4 +13,13 @@
 <div>
     <a asp-action="Index">Back</a> |
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit Category</a>
+
 </div>
+@if (Model.CategoryImage != null)
+{
+    <form method="post" asp-action="DeleteCategoryPhoto" asp-route-id="@Model.Id">
+    <button type="submit" class="btn btn-danger" style="width:auto">Izbriši sliku</button>
+    </form>
+}
+
+<img class="card-img-top" style="max-width: fit-content" src="@photoPath" asp-append-version="true" />

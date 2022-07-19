@@ -1,6 +1,7 @@
 ﻿@model Product
 @{
     ViewData["Title"] = "Details";
+    var photoPath = "~/images/products/" + (Model.ProductImage ?? "no-photo.png");
 }
 
 <h1>Product details</h1>
@@ -43,5 +44,14 @@
 
 <div>
     <a asp-action="Index">Back</a> |
-    <a asp-action="Edit">Edit</a>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
 </div>
+
+@if (Model.ProductImage != null)
+{
+    <form method="post" asp-action="DeleteProductPhoto" asp-route-id="@Model.Id">
+    <button type="submit" class="btn btn-danger" style="width:auto">Delete image</button>
+    </form>
+}
+
+<img class="card-img-top" style="max-width: fit-content" src="@photoPath" asp-append-version="true" />
