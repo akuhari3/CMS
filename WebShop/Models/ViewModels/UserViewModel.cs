@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace WebShop.Models
@@ -20,6 +21,7 @@ namespace WebShop.Models
         [Required(ErrorMessage = "Password confirmation is required!")]
         [DataType(DataType.Password)]
         [Compare("Password")]
+        [DisplayName("Repeated Password")]
         public string RepeatedPassword { get; set; }
         public bool Active { get; set; }
         public Timezone Timezone { get; set; }

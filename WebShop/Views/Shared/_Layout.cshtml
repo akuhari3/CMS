@@ -6,11 +6,11 @@
     <title>@ViewData["Title"] - WebShop</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/WebShop.styles.css" asp-append-version="true" />
+
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WebShop</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -40,7 +40,19 @@
                     <partial name="_LoginPartial" />
                 </div>
             </div>
-        </nav>
+        </nav>*@
+
+        <nav class="navbar align-content-md-start navbar-expand-sm">
+  <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WebShop</a>
+  <ul class="navbar-nav flex-grow-1">
+                        <partial name="_PublicMenuPartial" />
+                        
+  </ul>
+   <ul class="navbar-nav flex-grow-1">
+       <partial name="_AdminMenuPartial" />
+       </ul>
+  <partial name="_LoginPartial" />
+</nav>
     </header>
     <div class="container">
         <main role="main" class="pb-3">

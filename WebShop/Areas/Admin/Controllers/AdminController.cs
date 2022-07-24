@@ -28,6 +28,13 @@ namespace WebShop.Areas.Admin.Controllers
             return View(users);
         }
 
+        public IActionResult Details(string id)
+        {
+            var user = _userManager.Users.FirstOrDefault(a => a.Id == id);
+
+            return View(user);
+        }
+
         public IActionResult Create()
         {
             return View();
