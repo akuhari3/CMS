@@ -31,11 +31,11 @@ namespace WebShop
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)//
+            builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
-            builder.Services.AddEndpointsApiExplorer();
+            //builder.Services.AddEndpointsApiExplorer();
             //builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
@@ -43,8 +43,6 @@ namespace WebShop
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
-                //app.UseSwagger();
-                //app.UseSwaggerUI();
                 app.UseMigrationsEndPoint();
             }
             else
@@ -77,17 +75,17 @@ namespace WebShop
 
             app.UseRouting();
             app.UseStaticFiles();
-            //app.UseStaticFiles(new StaticFileOptions()
-            //{
-            //    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"/wwwroot/images/")),
-            //    RequestPath = new PathString("/wwwroot/images/")
-            //});
             app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseSession();
 
-            app.MapControllers();
+            //app.MapControllers();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
 
             app.MapControllerRoute(
                 name: "Admin",
@@ -96,7 +94,7 @@ namespace WebShop
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
-
+            
             app.MapRazorPages();
 
             app.Run();

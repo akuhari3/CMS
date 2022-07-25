@@ -58,7 +58,7 @@ namespace WebShop.Repositories
             _dbContext.SaveChanges();
         }
 
-        public void UpdateProduct(ProductViewModel productVM)
+        public Product UpdateProduct(ProductViewModel productVM)
         {
             Product product = new Product()
             {
@@ -76,6 +76,8 @@ namespace WebShop.Repositories
 
             _dbContext.Update(product);
             _dbContext.SaveChanges();
+
+            return product;
         }
 
         public void DeleteProduct(int id)
@@ -87,6 +89,93 @@ namespace WebShop.Repositories
                 _dbContext.Product.Remove(product);
                 _dbContext.SaveChanges();
             }
+        }
+
+        #endregion
+
+        #region Product API Repository Implementation
+
+        public List<Product> GetAllAPI()
+        {
+            return _dbContext.Product.ToList();
+        }
+
+        public Product GetProductByIdAPI(int id)
+        {
+            return _dbContext.Product.FirstOrDefault(m => m.Id == id);
+        }
+
+        public Product InsertProductAPI(Product product)
+        {
+            var result = _dbContext.Product.Add(product);
+            _dbContext.SaveChanges();
+
+            return result.Entity;
+        }
+
+        public Product UpdateProductAPI(Product product)
+        {
+            var result = _dbContext.Product.FirstOrDefault(m => m.Id == product.Id);
+
+            if (result != null)
+            {
+                result.ProductName = product.ProductName;
+                result.ProductDescription = product.ProductDescription;
+                result.Quantity = product.Quantity;
+                result.Price = product.Price;
+                result.ProductImage = product.ProductImage;
+
+                _dbContext.SaveChanges();
+
+                return result;
+            }
+
+            return null;
+        }
+
+        public void DeleteProductAPI(int id)
+        {
+            var result = _dbContext.Product.FirstOrDefault(m => m.Id == id);
+
+            if (result != null)
+            {
+                _dbContext.Product.Remove(result);
+                _dbContext.SaveChanges();
+            }
+        }
+
+        public List<Product> QueryStringFilterAPI(string s, string orderBy, int perPage)
+        {
+            var filter = _dbContext.Product.ToList();
+
+            if (!string.IsNullOrEmpty(s))
+            {
+                filter = filter
+                    .Where
+                    (
+                        p => p.ProductName.Contains(s, StringComparison.CurrentCultureIgnoreCase)
+                        || p.ProductDescription.Contains(s, StringComparison.CurrentCultureIgnoreCase)
+                    ).ToList();
+            }
+
+            switch (orderBy)
+            {
+                case "asc":
+                    filter = filter.OrderBy(m => m.Id).ToList();
+                    break;
+                case "desc":
+                    filter = filter.OrderByDescending(m => m.Id).ToList();
+                    break;
+                default:
+                    break;
+            }
+
+            if (perPage > 0)
+            {
+                filter = filter.Take(perPage).ToList();
+            }
+
+            return filter;
         }
 
         #endregion

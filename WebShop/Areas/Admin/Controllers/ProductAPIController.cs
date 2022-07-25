@@ -23,12 +23,14 @@ namespace WebShop.Areas.Admin.Controllers
         }
         #endregion
 
+        #region Product API Action Methods
+
         [HttpGet]
         public ActionResult<List<Product>> GetProducts()
         {
             try
             {
-                return Ok(_productRepository.GetProducts());
+                return Ok(_productRepository.GetAllAPI());
             }
             catch (Exception)
             {
@@ -41,7 +43,7 @@ namespace WebShop.Areas.Admin.Controllers
         {
             try
             {
-                var result = _productRepository.GetProductById(id);
+                var result = _productRepository.GetProductByIdAPI(id);
                 if (result == null)
                 {
                     return NotFound();
@@ -65,13 +67,13 @@ namespace WebShop.Areas.Admin.Controllers
                     return BadRequest("Product Id missmatch");
                 }
 
-                var productForUpdating = _productRepository.GetProductById(id);
+                var productForUpdating = _productRepository.GetProductByIdAPI(id);
                 if (productForUpdating == null)
                 {
                     return NotFound($"Product with Id = {id} not found");
                 }
 
-                var updatedProduct = _productRepository.UpdateProduct(product);
+                var updatedProduct = _productRepository.UpdateProductAPI(product);
 
                 return Ok(updatedProduct);
             }
@@ -91,12 +93,12 @@ namespace WebShop.Areas.Admin.Controllers
                     return BadRequest(ModelState);
                 }
 
-                var createdMovie = _productRepository.AddProduct(product);
+                var createdProduct = _productRepository.InsertProductAPI(product);
 
                 return CreatedAtAction
                     (
                         nameof(GetProduct), new { id = createdProduct.Id },
-                        createdMovie
+                        createdProduct
                     );
             }
             catch (Exception)
@@ -106,17 +108,17 @@ namespace WebShop.Areas.Admin.Controllers
         }
 
         [HttpDelete("{id}")]
-        public ActionResult DeleteMovie(int id)
+        public ActionResult DeleteProduct(int id)
         {
             try
             {
-                var movieToDelete = _movieRepository.GetMovieById(id);
-                if (movieToDelete == null)
+                var productToDelete = _productRepository.GetProductByIdAPI(id);
+                if (productToDelete == null)
                 {
-                    return NotFound($"Movie with Id = {id} not found");
+                    return NotFound($"Product with Id = {id} not found");
                 }
 
-                _movieRepository.DeleteMovie(id);
+                _productRepository.DeleteProductAPI(id);
 
                 return Ok();
             }
@@ -131,9 +133,9 @@ namespace WebShop.Areas.Admin.Controllers
         {
             try
             {
-                var movies = _movieRepository.QueryStringFilter(s, orderBy, perPage);
+                var products = _productRepository.QueryStringFilterAPI(s, orderBy, perPage);
 
-                return Ok(movies);
+                return Ok(products);
             }
             catch (Exception)
             {
@@ -141,6 +143,6 @@ namespace WebShop.Areas.Admin.Controllers
             }
         }
 
-
+        #endregion
     }
 }
