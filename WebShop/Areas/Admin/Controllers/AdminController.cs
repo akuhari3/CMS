@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.IO;
 using System.Threading.Tasks;
 using WebShop.Data;
+using WebShop.Interfaces;
 using WebShop.Models;
 
 namespace WebShop.Areas.Admin.Controllers
@@ -14,11 +15,13 @@ namespace WebShop.Areas.Admin.Controllers
     {
         private UserManager<ApplicationUser> _userManager;
         private IPasswordHasher<ApplicationUser> _passwordHasher;
+        private IAdministrationRepository _administrationRepository;
 
-        public AdminController(UserManager<ApplicationUser> userManager, IPasswordHasher<ApplicationUser> passwordHasher)
+        public AdminController(UserManager<ApplicationUser> userManager, IPasswordHasher<ApplicationUser> passwordHasher, IAdministrationRepository administrationRepository)
         {
             _userManager = userManager;
             _passwordHasher = passwordHasher;
+            _administrationRepository = administrationRepository;
         }
 
         public IActionResult Index()
@@ -166,6 +169,21 @@ namespace WebShop.Areas.Admin.Controllers
             }
 
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public ActionResult SearchByQueryString(string s, string orderBy = "asc", int perPage = 0)
+        {
+            try
+            {
+                var products = _administrationRepository.QueryStringFilterUsers(s, orderBy, perPage);
+
+                return View(products);
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("PageNotFound", "HttpStatusCodes", new { source = "No user in database!" });
+            }
         }
 
         private void Errors(IdentityResult identityResult)

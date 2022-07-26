@@ -5,17 +5,41 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>All Users</h1>
-<a asp-action="Create" class="btn-primary btn-primary">Create user</a>
+<h3>All Users</h3>
 
-<table class="table table-bordered">
+
+<div class="row justify-content-center">
+
+    <div class="col-xl-12 col-lg-12 col-lg-9">
+        <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="d-flex justify-content-between">
+                <div class="form-group" style="margin:25px;">
+                        <label for="BillingCountry">Per Page:</label>
+                        <select class="form-control" style="max-width: 60px;" id="BillingCity" name="BillingCountry">
+                            <option value="5" selected="selected">5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                            <option value="25">25</option>
+                        </select>
+                    </div>
+                    <div>
+                    <label for="gsearch">Search </label>
+                    <input type="search" id="gsearch" name="gsearch">
+                </div>
+                <a asp-action="Create" class="btn btn-primary" style="margin:25px;">Create user</a>
+                </div>
+                
+            <div class="card-body p-0">
+                <div class="row">
+                    <div class="col-lg-12">
+                       <table class="table table-striped">
     <thead>
         <tr>
-            <th>Id</th>
-            <th>UsernName</th>
+            <th>First Name</th>
+            <th>Last Name</th>
             <th>Email</th>
-            <th>Avatar</th>
-            <th></th>
+            <th>Roles</th>
             <th></th>
         </tr>
     </thead>
@@ -23,10 +47,11 @@
         @foreach (var user in Model)
         {
             <tr>
-                <td>@user.Id</td>
-                <td>@user.UserName</td>
+                <td>@user.FirstName</td>
+                <td>@user.LastName</td>
                 <td>@user.Email</td>
-                <td>
+                <td></td>
+                @*<td>
                     @if (user.Avatar != null)
                     {
                         <img style="width:150px;height:150px;" src="data:image/*;base64,@Convert.ToBase64String(user.Avatar)" />
@@ -35,16 +60,32 @@
                     {
                         <span>No avatar available!</span>                        
                     }
-                </td>
+                </td>*@
                 <td>
-                    <a asp-action="Update" asp-route-id="@user.Id" class="btn btn-sm btn-primary">Update</a>
-                </td>
-                <td>
+                    <div class="form-group row">
+                    <a asp-action="Details" asp-route-id="@user.Id" class="btn btn-sm btn-primary" style="margin:5px;">Details</a> 
+                    <a asp-action="Update" asp-route-id="@user.Id" class="btn btn-sm btn-primary" style="margin:5px;">Update</a> 
+
                     <form asp-action="Delete" asp-route-id="@user.Id" method="post">
-                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-sm btn-danger" style="margin:5px;">Delete</button>
+                        
                     </form>
+                    </div>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+                    
