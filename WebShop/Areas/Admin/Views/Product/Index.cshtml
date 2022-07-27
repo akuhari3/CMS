@@ -9,36 +9,42 @@
 <p>
     <a asp-action="Create">Create new product</a>
 </p>
+<div class="row justify-content-center">
 
+    <div class="col-xl-12 col-lg-12 col-md-9">
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <div class="row">
 
 <table class="table">
     <thead>
+
         <tr>
-            <th>
+            <th class="col-2 p-5">
                 @Html.DisplayNameFor(model => model.ProductName)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Quantity)
+            <th class="col-7 p-5">
+                @Html.DisplayNameFor(model => model.ProductDescription)
             </th>
-            <th>
+            <th class="col-1 p-5">
                 @Html.DisplayNameFor(model => model.Price)
             </th>
-            <th></th>
+            <th class="col-2 p-5">></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
-                <td>@Html.DisplayFor(modelItem => item.ProductName)</td>
-
-                <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
-
-                <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                <td class="col-2 p-5">@Html.DisplayFor(modelItem => item.ProductName)</td>
+                <td class="col-7 p-5">@Html.DisplayFor(modelItem => item.ProductDescription)</td>
+                <td class="col-1 p-5">@Html.DisplayFor(modelItem => item.Price)</td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
+                    <div class="btn-group">
+                    <a class="btn btn-primary btn-sm" style="margin:5px;" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    <a class="btn btn-secondary btn-sm" style="margin:5px;" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    <a class="btn btn-danger btn-sm" style="margin:5px;" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </div>
                     <a asp-action="Index" asp-controller="ProductCategory" asp-route-productId="@item.Id">Add new Category</a>
                 </td>
             </tr>
@@ -46,3 +52,9 @@
     </tbody>
 
 </table>
+ </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>

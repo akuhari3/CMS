@@ -5,6 +5,59 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<div class="row justify-content-center">
 
-<div class="row"></div>
+    <div class="col-xl-12 col-lg-12 col-md-9">
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-5">
+            View User
+             <hr>
+             <div class="row">
+             <div class="col-4">
+                 <div class="p-3">
+                    First Name
+                 </div>
+                 <div class="p-3">
+                    Last Name
+                 </div>
+                 <div class="p-3">
+                    Email Address
+                 </div>
+                 <div class="p-3">
+                    Status
+                 </div>
+                 <div class="p-3">
+                    Timezone
+                 </div>
+                 <div class="p-3">
+                    Roles
+                 </div>
+             </div>
+             <div class="col-4">
+                 <div class="p-3">
+                    @Model.FirstName
+                 </div>
+                 <div class="p-3">
+                    @Model.LastName
+                 </div>
+                 <div class="p-3">
+                    @Model.Email
+                 </div>
+                 <div class="p-3">
+                    @Model.Active
+                 </div>
+                 <div class="p-3">
+                    @Model.Timezone
+                 </div>
+                 <div class="p-3">
+                    Roles???
+                 </div>
+             </div>
+             <div class="col-4">
+                 picture
+             </div>
+             </div>
+            </div>
+        </div>
+    </div>
+</div>
