@@ -21,6 +21,7 @@ namespace WebShop.Repositories
         }
 
         #endregion
+
         #region Category Repository Implementation
 
         public IEnumerable<Category> GetCategories()
@@ -53,20 +54,21 @@ namespace WebShop.Repositories
             _dbContext.SaveChanges();
         }
 
-        public void UpdateCategory(CategoryViewModel category)
+        public void UpdateCategory(CategoryViewModel categoryVM)
         {
-            Category cat = new Category()
-            {
-                CategoryName = category.CategoryName,
-                CategoryDescription = category.CategoryDescription
-            };
+            var category = _dbContext.Category.FirstOrDefault(a => a.Id == categoryVM.Id);
 
-            if (category.CategoryImage != null)
+            category.Id = categoryVM.Id;
+            category.CategoryName = categoryVM.CategoryName;
+            category.CategoryDescription = categoryVM.CategoryDescription;
+
+
+            if (categoryVM.CategoryImage != null)
             {
-                cat.CategoryImage = category.CategoryImage.FileName;
+                category.CategoryImage = categoryVM.CategoryImage.FileName;
             }
 
-            _dbContext.Update(cat);
+            _dbContext.Update(category);
             _dbContext.SaveChanges();
         }
 
@@ -117,6 +119,7 @@ namespace WebShop.Repositories
             category.CategoryImage = null;
             CategoryViewModel cvm = new CategoryViewModel()
             {
+                Id = category.Id,
                 CategoryName = category.CategoryName,
                 CategoryDescription = category.CategoryDescription
             };

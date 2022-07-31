@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Product>
+﻿@model List<Product>
 
 @{
     ViewData["Title"] = "Index";
@@ -7,8 +7,17 @@
 <h1>Products</h1>
 
 <p>
-    <a asp-action="Create">Create new product</a>
+    <a class="btn btn-primary" asp-action="Create">Create new product</a>
 </p>
+
+@if (Model.Count == 0)
+{
+    <div class="text-center">
+        <h1>No products in Store</h1>
+    </div>
+}
+else
+{
 <div class="row justify-content-center">
 
     <div class="col-xl-12 col-lg-12 col-md-9">
@@ -18,32 +27,31 @@
 
 <table class="table">
     <thead>
-
         <tr>
-            <th class="col-2 p-5">
-                @Html.DisplayNameFor(model => model.ProductName)
+            <th class="col-2">
+                Title
             </th>
-            <th class="col-7 p-5">
-                @Html.DisplayNameFor(model => model.ProductDescription)
+            <th class="col-7">
+                Description
             </th>
-            <th class="col-1 p-5">
-                @Html.DisplayNameFor(model => model.Price)
+            <th class="col-1">
+                Price
             </th>
-            <th class="col-2 p-5">></th>
+            <th class="col-2"></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
-                <td class="col-2 p-5">@Html.DisplayFor(modelItem => item.ProductName)</td>
-                <td class="col-7 p-5">@Html.DisplayFor(modelItem => item.ProductDescription)</td>
-                <td class="col-1 p-5">@Html.DisplayFor(modelItem => item.Price)</td>
+                <td class="col-2">@Html.DisplayFor(modelItem => item.ProductName)</td>
+                <td class="col-7">@Html.DisplayFor(modelItem => item.ProductDescription)</td>
+                <td class="col-1">@Html.DisplayFor(modelItem => item.Price)$</td>
                 <td>
                     <div class="btn-group">
-                    <a class="btn btn-primary btn-sm" style="margin:5px;" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                    <a class="btn btn-secondary btn-sm" style="margin:5px;" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                    <a class="btn btn-danger btn-sm" style="margin:5px;" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    <a class="btn btn-secondary btn-sm" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                     </div>
                     <a asp-action="Index" asp-controller="ProductCategory" asp-route-productId="@item.Id">Add new Category</a>
                 </td>
@@ -58,3 +66,4 @@
             </div>
         </div>
     </div>
+    }

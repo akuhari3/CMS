@@ -6,52 +6,55 @@
 
 <h1>Product details</h1>
 
-<div>
-    <div class="row">
-        <div class="col-md-2">
+<div class="row">
+    <div class="col-md-6">
+    <dl class="row">
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.ProductName)
-        </div>
-        <div class="col-md-2">
+        </dt>
+        <dd class="col-md-4">
             @Html.DisplayFor(model => model.ProductName)
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-2">
+        </dd>
+    </dl>
+    <dl class="row">
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.ProductDescription)
-        </div>
-        <div class="col-md-2">
+        </dt>
+        <dd class="col-md-4">
             @Html.DisplayFor(model => model.ProductDescription)
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-2">
+        </dd>
+    </dl>
+    <dl class="row">
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Quantity)
-        </div>
-        <div class="col-md-2">
-            @Html.DisplayFor(model => model.Quantity)
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-2">
+        </dt>
+        <dd class="col-md-4">
+            @Html.DisplayFor(model => model.Quantity)pcs
+        </dd>
+    </dl>
+    <dl class="row">
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Price)
-        </div>
-        <div class="col-md-2">
-            @Html.DisplayFor(model => model.Price)
-        </div>
-    </div>
-
+        </dt>
+        <dd class="col-md-4">
+            @Html.DisplayFor(model => model.Price)$
+        </dd>
+    </dl>
+</div>
+<div class="col-md-6">
+    <img class="card-img-top" style="max-width: fit-content" src="@photoPath" asp-append-version="true" />
 </div>
 
-<div>
-    <a asp-action="Index">Back</a> |
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
-</div>
-
-@if (Model.ProductImage != null)
+<div class="btn-group">
+    <a class="btn btn-primary" asp-action="Index">Back</a>
+    <a class="btn btn-secondary" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+    @if (Model.ProductImage != null)
 {
     <form method="post" asp-action="DeleteProductPhoto" asp-route-id="@Model.Id">
     <button type="submit" class="btn btn-danger" style="width:auto">Delete image</button>
     </form>
 }
+</div>
+</div>
 
-<img class="card-img-top" style="max-width: fit-content" src="@photoPath" asp-append-version="true" />
+

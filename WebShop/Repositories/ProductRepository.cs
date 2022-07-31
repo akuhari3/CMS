@@ -58,16 +58,39 @@ namespace WebShop.Repositories
             _dbContext.SaveChanges();
         }
 
+        //public Product UpdateProduct(ProductViewModel productVM)
+        //{
+        //    Product product = new Product()
+        //    {
+        //        Id = productVM.Id,
+        //        ProductName = productVM.ProductName,
+        //        ProductDescription = productVM.ProductDescription,
+        //        Price = productVM.Price,
+        //        Quantity = productVM.Quantity
+        //    };
+        //    var image = _dbContext.Product.FirstOrDefault(a => a.Id == productVM.Id);
+
+        //    if (productVM.ProductImage != null)
+        //    {
+        //        product.ProductImage = productVM.ProductImage.FileName;
+        //    }
+
+        //    _dbContext.Update(product);
+        //    _dbContext.SaveChanges();
+
+        //    return product;
+        //}
+
         public Product UpdateProduct(ProductViewModel productVM)
         {
-            Product product = new Product()
-            {
-                ProductName = productVM.ProductName,
-                ProductDescription = productVM.ProductDescription,
-                Price = productVM.Price,
-                Quantity = productVM.Quantity
-            };
-            var image = _dbContext.Product.FirstOrDefault(a => a.Id == productVM.Id);
+            var product = _dbContext.Product.FirstOrDefault(a => a.Id == productVM.Id);
+
+            product.Id = productVM.Id;
+            product.ProductName = productVM.ProductName;
+            product.ProductDescription = productVM.ProductDescription;
+            product.Price = productVM.Price;
+            product.Quantity = productVM.Quantity;
+            
 
             if (productVM.ProductImage != null)
             {
@@ -201,6 +224,7 @@ namespace WebShop.Repositories
             product.ProductImage = null;
             ProductViewModel pvm = new ProductViewModel()
             {
+                Id = product.Id,
                 ProductName = product.ProductName,
                 ProductDescription = product.ProductDescription,
                 Price = product.Price,
