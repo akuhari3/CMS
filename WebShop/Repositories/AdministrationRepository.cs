@@ -90,7 +90,7 @@ namespace WebShop.Repositories
                 var userWithRoles = new UserRolesViewModel
                 {
                     Id = user.Id,
-                    Name = user.UserName,
+                    UserName = user.UserName,
                     Email = user.Email,
                     Roles = new List<string>(await _userManager.GetRolesAsync(user))
                 };

@@ -1,5 +1,5 @@
 ﻿@using WebShop.Data
-@model IEnumerable<ApplicationUser>
+@model List<UserRolesViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -14,7 +14,7 @@
         <div class="card o-hidden border-0 shadow-lg my-5">
                 <div class="d-flex justify-content-between">
                 <div class="form-group" style="margin:25px;">
-                        <label for="BillingCountry">Per Page:</label>
+                        <label>Per Page:</label>
                         <select class="form-control" style="max-width: 70px;" id="BillingCity" name="BillingCountry">
                             <option value="5" selected="selected">5</option>
                             <option value="10">10</option>
@@ -50,6 +50,7 @@
                 <td>@user.FirstName</td>
                 <td>@user.LastName</td>
                 <td>@user.Email</td>
+                <td>@string.Join(" , ", user.Roles)</td>
                 <td></td>
                 @*<td>
                     @if (user.Avatar != null)
@@ -71,6 +72,11 @@
                         
                     </form>
                     </div>
+                </td>
+                <td>
+                    <a asp-action="AddRolesToUser" class="btn btn-primary" asp-route-id="@user.Id">
+                        Add/Remove roles
+                    </a>
                 </td>
             </tr>
         }

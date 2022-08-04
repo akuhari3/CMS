@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.IO;
 using System.Threading.Tasks;
 using WebShop.Data;
@@ -16,19 +17,35 @@ namespace WebShop.Areas.Admin.Controllers
         private UserManager<ApplicationUser> _userManager;
         private IPasswordHasher<ApplicationUser> _passwordHasher;
         private IAdministrationRepository _administrationRepository;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public AdminController(UserManager<ApplicationUser> userManager, IPasswordHasher<ApplicationUser> passwordHasher, IAdministrationRepository administrationRepository)
+        public AdminController(UserManager<ApplicationUser> userManager, IPasswordHasher<ApplicationUser> passwordHasher, IAdministrationRepository administrationRepository, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _passwordHasher = passwordHasher;
             _administrationRepository = administrationRepository;
+            _roleManager = roleManager;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var users = _userManager.Users;
+            var usersWithRoles = new List<UserRolesViewModel>();
 
-            return View(users);
+            foreach (ApplicationUser user in users)
+            {
+                var userWithRoles = new UserRolesViewModel
+                {
+                    Id = user.Id,
+                    UserName = user.UserName,
+                    Email = user.Email,
+                    Roles = new List<string>(await _userManager.GetRolesAsync(user))
+                };
+
+                usersWithRoles.Add(userWithRoles);
+            }
+
+            return View(usersWithRoles);
         }
 
         public IActionResult Details(string id)
@@ -166,6 +183,76 @@ namespace WebShop.Areas.Admin.Controllers
             else
             {
                 ModelState.AddModelError("", "User not found!");
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        
+
+        public async Task<IActionResult> AddRolesToUser(string id)
+        {
+            ViewBag.UserId = id;
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                ViewBag.Error = $"User with id - {id} cannot be found!";
+                return View("PageNotFound");
+            }
+
+            ViewBag.UserName = user.UserName;
+            var model = new List<AddRemoveUserRolesViewModel>();
+            foreach (var role in _roleManager.Roles)
+            {
+                var addRemoveUserRole = new AddRemoveUserRolesViewModel()
+                {
+                    RoleId = role.Id,
+                    RoleName = role.Name
+                };
+
+                if (await _userManager.IsInRoleAsync(user, role.Name))
+                {
+                    addRemoveUserRole.Selected = true;
+                }
+                else
+                {
+                    addRemoveUserRole.Selected = false;
+                }
+                model.Add(addRemoveUserRole);
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddRolesToUser(List<AddRemoveUserRolesViewModel> model, string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                ViewBag.Error = $"User with id - {userId} cannot be found!";
+                return View("PageNotFound");
+            }
+
+            var roles = await _userManager.GetRolesAsync(user);
+            var result = await _userManager.RemoveFromRolesAsync(user, roles);
+
+            if (!result.Succeeded)
+            {
+                ModelState.AddModelError("", "Cannot remove roles from existing user");
+
+                return View(model);
+            }
+
+            result = await _userManager.AddToRolesAsync
+                (user, model.Where(role => role.Selected == true)
+                .Select(role => role.RoleName));
+
+            if (!result.Succeeded)
+            {
+                ModelState.AddModelError("", "Cannot add selected roles to user");
+
+                return View(model);
             }
 
             return RedirectToAction(nameof(Index));

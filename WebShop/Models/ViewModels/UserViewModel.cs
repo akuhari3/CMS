@@ -6,6 +6,7 @@ namespace WebShop.Models
 {
     public class UserViewModel
     {
+        public int Id { get; set; }
         [Required(ErrorMessage = "First name is required!")]
         [StringLength(50, MinimumLength = 2)]
         [Display(Name = "First Name")]
