@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using WebShop.Data;
 using WebShop.Interfaces;
 using WebShop.Models;
 
@@ -10,15 +12,17 @@ namespace WebShop.Repositories
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private IPasswordHasher<ApplicationUser> _passwordHasher;
+        private readonly ApplicationDbContext _dbContext;
         #endregion
 
 
         #region Constructors
-        public AdministrationRepository(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IPasswordHasher<ApplicationUser> passwordHasher)
+        public AdministrationRepository(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IPasswordHasher<ApplicationUser> passwordHasher, ApplicationDbContext dbContext)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _passwordHasher = passwordHasher;
+            _dbContext = dbContext;
         }
         #endregion
 
@@ -196,6 +200,20 @@ namespace WebShop.Repositories
 
 
         #endregion
+
+        #region Dropdown Timezones
+        public List<SelectListItem> TimezonesForDropDownList()
+        {
+            return Enum.GetValues(typeof(Timezone)).Cast<Timezone>().Select(v => new SelectListItem
+            {
+                Text = v.ToString(),
+                Value = ((int)v).ToString()
+            }).ToList();
+        }
+
+        #endregion
+
+
 
 
     }

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WebShop.Models
 {
-    public class UserViewModel
+    public class UserEditModel
     {
         public string Id { get; set; }
         [Required(ErrorMessage = "First name is required!")]
@@ -25,13 +25,7 @@ namespace WebShop.Models
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
-        [Required(ErrorMessage = "Password confirmation is required!")]
-        [DataType(DataType.Password)]
-        [Compare("Password")]
-        [Display(Name = "Repeated Password")]
-        public string RepeatedPassword { get; set; }
         public bool Active { get; set; }
         public Timezone Timezone { get; set; }
-        public IFormFile Avatar { get; set; }
     }
 }

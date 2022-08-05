@@ -39,6 +39,10 @@ namespace WebShop.Areas.Admin.Controllers
                     Id = user.Id,
                     UserName = user.UserName,
                     Email = user.Email,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Active = user.Active,
+                    Timezone = user.Timezone,
                     Roles = new List<string>(await _userManager.GetRolesAsync(user))
                 };
 
@@ -48,15 +52,17 @@ namespace WebShop.Areas.Admin.Controllers
             return View(usersWithRoles);
         }
 
-        public IActionResult Details(string id)
+        public async Task<IActionResult> Details(string id)
         {
             var user = _userManager.Users.FirstOrDefault(a => a.Id == id);
-
+            var roles = new List<string>(await _userManager.GetRolesAsync(user));
+            ViewBag.UserList = roles;
             return View(user);
         }
 
         public IActionResult Create()
         {
+            ViewBag.Timezones = _administrationRepository.TimezonesForDropDownList();
             return View();
         }
 
@@ -106,10 +112,20 @@ namespace WebShop.Areas.Admin.Controllers
         public async Task<IActionResult> Update(string id)
         {
             ApplicationUser user = await _userManager.FindByIdAsync(id);
-
+            ViewBag.Timezones = _administrationRepository.TimezonesForDropDownList();
+            var userEditModel = new UserEditModel
+            {
+                Id = user.Id,
+                UserName = user.UserName,
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Active = user.Active,
+                Timezone = user.Timezone,
+            };
             if (user != null)
             {
-                return View(user);
+                return View(userEditModel);
             }
             else
             {
@@ -118,30 +134,60 @@ namespace WebShop.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Update(string id, string email, string password)
+        public async Task<IActionResult> Update(UserEditModel uem)
         {
-            ApplicationUser appUser = await _userManager.FindByIdAsync(id);
+            ApplicationUser appUser = await _userManager.FindByIdAsync(uem.Id);
             if (appUser != null)
             {
-                if (!string.IsNullOrEmpty(email))
+                if (!string.IsNullOrEmpty(uem.Email))
                 {
-                    appUser.Email = email;
+                    appUser.Email = uem.Email;
                 }
                 else
                 {
                     ModelState.AddModelError("", "Email cannot be empty!");
                 }
 
-                if (!string.IsNullOrEmpty(password))
+                if (!string.IsNullOrEmpty(uem.Password))
                 {
-                    appUser.PasswordHash = _passwordHasher.HashPassword(appUser, password);
+                    appUser.PasswordHash = _passwordHasher.HashPassword(appUser, uem.Password);
                 }
                 else
                 {
                     ModelState.AddModelError("", "Password cannot be empty!");
                 }
 
-                if (!string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(password))
+                if (!string.IsNullOrEmpty(uem.FirstName))
+                {
+                    appUser.FirstName = uem.FirstName;
+                }
+                else
+                {
+                    ModelState.AddModelError("", "First name cannot be empty!");
+                }
+
+                if (!string.IsNullOrEmpty(uem.LastName))
+                {
+                    appUser.LastName = uem.LastName;
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Last name cannot be empty!");
+                }
+
+                if (!string.IsNullOrEmpty(uem.UserName))
+                {
+                    appUser.UserName = uem.UserName;
+                }
+                else
+                {
+                    ModelState.AddModelError("", "User name cannot be empty!");
+                }
+
+                appUser.Active = uem.Active;
+                appUser.Timezone = uem.Timezone;
+
+                if (!string.IsNullOrEmpty(uem.Email) && !string.IsNullOrEmpty(uem.Password))
                 {
                     IdentityResult result = await _userManager.UpdateAsync(appUser);
 

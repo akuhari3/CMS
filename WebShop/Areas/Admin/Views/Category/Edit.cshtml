@@ -3,11 +3,16 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<div class="text-start"> 
+   <h1 class="h4 text-gray-900">Edit Category</h1>
+</div>
+<div class="row justify-content-center">
 
-<h4>Category</h4>
-<div class="row">
-    <div class="col-md-4">
+    <div class="col-xl-12 col-lg-12 col-md-9">
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-12">
         <form enctype="multipart/form-data" asp-action="Edit" method="post">
             @Html.AntiForgeryToken()
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -39,13 +44,13 @@
             </div>
             </div>
             </form>
+</div>
+            </div>
+        </div>
     </div>
 </div>
+    </div>
 
-
-<div>
-    
-</div>
 
 @section Scripts{
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

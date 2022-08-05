@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using WebShop.Models;
 
 namespace WebShop.Interfaces
@@ -19,5 +20,6 @@ namespace WebShop.Interfaces
         List<IdentityRole> GetUserRoles();
         void AddUserRole(string roleName);
         List<ApplicationUser> QueryStringFilterUsers(string s, string orderBy, int perPage);
+        List<SelectListItem> TimezonesForDropDownList();
     }
 }
