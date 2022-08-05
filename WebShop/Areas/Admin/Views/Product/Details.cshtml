@@ -49,9 +49,9 @@
     <img class="card-img-top" style="max-width:100vw fit-content" src="@photoPath" asp-append-version="true" />
 </div>
 
-<div class="btn-group">
-    <a class="btn btn-primary" asp-action="Index">Back</a>
-    <a class="btn btn-secondary" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+<div class="btn-group  d-flex justify-content-between">
+    <a class="btn btn-secondary" asp-action="Index">Back</a>
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
     @if (Model.ProductImage != null)
 {
     <form method="post" asp-action="DeleteProductPhoto" asp-route-id="@Model.Id">

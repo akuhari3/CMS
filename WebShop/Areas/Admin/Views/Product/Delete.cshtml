@@ -41,11 +41,11 @@
     </dl>
 
     <div class="row">
-    <div class="btn-group">
+    <div class="btn-group d-flex justify-content-between">
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
+        <a class="btn btn-secondary" asp-action="Index">Back</a>
         <input type="submit" value="Delete" class="btn btn-danger" />
-        <a class="btn btn-primary" asp-action="Index">Back to List</a>
     </form>
     </div>
     </div>
