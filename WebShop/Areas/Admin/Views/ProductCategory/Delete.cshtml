@@ -3,7 +3,11 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1>Delete</h1>
+<ul class="breadcrumb">
+  <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+  <li><a asp-controller="ProductCategory" asp-action="Index" asp-route-productId="@ViewBag.ProductId">Product categories</a></li>
+  <li>Remove category</li>
+</ul>
 
 <h2>Are you sure?</h2>
 <p>

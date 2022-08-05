@@ -4,7 +4,11 @@
     ViewData["Title"] = "Role manager";
 }
 
-<h1>Role manager</h1>
+<ul class="breadcrumb">
+  <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+  <li>Role manager</li>
+</ul>
+
 <form method="post" asp-action="AddRole" asp-controller="RoleManager">
     <div class="input-group">
         <input name="roleName" class="form-control w-25" />

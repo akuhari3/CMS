@@ -3,6 +3,12 @@
     ViewData["Title"] = "Create";
 }
 
+<ul class="breadcrumb">
+  <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+  <li><a asp-controller="Product" asp-action="Index">Products</a></li>
+  <li>Create new product</li>
+</ul>
+
 <div class="row justify-content-center">
     <div class="col-xl-12 col-lg-12 col-md-9">
         <div class="card o-hidden border-0 shadow-lg my-5">
@@ -47,7 +53,7 @@
                                 </div>
                                 <div class="form-group">
                                     <a class="btn btn-primary" asp-area="Admin" asp-controller="Product" asp-action="Index">Back</a>
-                                    <button class="btn btn-s" type="submit">Create</button>
+                                    <button class="btn btn-secondary" type="submit">Create</button>
                                 </div>
                             </form>
                         </div>

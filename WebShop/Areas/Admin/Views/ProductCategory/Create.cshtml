@@ -3,7 +3,11 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create new Category for product</h1>
+<ul class="breadcrumb">
+  <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+  <li><a asp-controller="ProductCategory" asp-action="Index" asp-route-productId="@ViewBag.ProductId">Product categories</a></li>
+  <li>Create new Category for product</li>
+</ul>
 
 <hr />
 <div class="row">

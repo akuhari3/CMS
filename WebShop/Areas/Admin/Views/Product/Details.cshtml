@@ -4,7 +4,11 @@
     var photoPath = "~/images/products/" + (Model.ProductImage ?? "no-photo.png");
 }
 
-<h1>Product details</h1>
+<ul class="breadcrumb">
+  <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+  <li><a asp-controller="Product" asp-action="Index">Products</a></li>
+  <li>Product details</li>
+</ul>
 
 <div class="row">
     <div class="col-md-6">

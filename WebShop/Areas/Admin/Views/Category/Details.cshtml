@@ -4,6 +4,12 @@
     var photoPath = "~/images/categories/" + (Model.CategoryImage ?? "no-photo.png");
 }
 
+<ul class="breadcrumb">
+  <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+  <li><a asp-controller="Category" asp-action="Index">Categories</a></li>
+  <li>Category details</li>
+</ul>
+
 <h4>Category Details</h4>
 
 <div class="row">

@@ -3,7 +3,10 @@
     ViewData["Title"] = "Orders";
 }
 
-<h1>Orders</h1>
+<ul class="breadcrumb">
+  <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+  <li>Orders</li>
+</ul>
 
 <p>
     <a asp-action="Create">Create new Order</a>

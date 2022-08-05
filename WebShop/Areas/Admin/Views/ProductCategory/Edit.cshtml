@@ -3,7 +3,12 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<ul class="breadcrumb">
+  <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+  <li><a asp-controller="ProductCategory" asp-action="Index" asp-route-productId="@ViewBag.ProductId">Product categories</a></li>
+  <li>Edit product category</li>
+</ul>
+
 <hr />
 <div class="row">
     <div class="col-md-4">

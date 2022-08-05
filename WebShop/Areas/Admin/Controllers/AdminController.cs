@@ -209,8 +209,16 @@ namespace WebShop.Areas.Admin.Controllers
             return View(appUser);
         }
 
+        public IActionResult Delete(string id) 
+        {
+            var user = _userManager.Users.FirstOrDefault(a => a.Id == id);
+            return View(user);
+        }
+
+
         [HttpPost]
-        public async Task<IActionResult> Delete(string id)
+        [ActionName("Delete")]
+        public async Task<IActionResult> DeleteUser(string id)
         {
             ApplicationUser appUser = await _userManager.FindByIdAsync(id);
             if (appUser != null)

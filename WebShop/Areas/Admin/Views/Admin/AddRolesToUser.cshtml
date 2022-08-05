@@ -2,6 +2,11 @@
 @{
     ViewData["Title"] = "v";
 }
+<ul class="breadcrumb">
+  <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+  <li><a asp-controller="Admin" asp-action="Index">Users</a></li>
+  <li>Add roles to user</li>
+</ul>
 
 <form method="post">
     <input type="hidden" name="userId" value="@ViewBag.UserId" />

@@ -4,7 +4,10 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Products</h1>
+<ul class="breadcrumb">
+  <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+  <li>Products</li>
+</ul>
 
 <p>
     <a class="btn btn-primary" asp-action="Create">Create new product</a>

@@ -2,11 +2,11 @@ html {
   font-size: 14px;
 }
 
-@media (min-width: 768px) {
+/*@media (min-width: 768px) {
   html {
     font-size: 16px;
   }
-}
+}*/
 
 html {
   position: relative;
@@ -38,4 +38,90 @@ body {
     top: 0;
     content: "€";
     left: 5px;
+}
+
+.body {
+    margin: 20px auto;
+    padding: 0;
+}
+.btn-max{
+    width: max-content;
+}
+
+.information {
+    background: rgb(100, 100, 100);
+}
+
+.warning {
+    background: rgb(249, 196, 109);
+}
+
+.critical {
+    background: rgb(238, 35, 35);
+}
+
+.normal {
+    background: rgb(25, 135, 84);
+}
+
+
+.nav-link{
+    color: rgb(25, 135, 84);
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.nav-link.active {
+    color: #ff0000;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.nav-link.active:hover {
+    color: #ff6a00;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.nav-link:hover {
+    color: #ff6a00;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+/* Style the list */
+ul.breadcrumb {
+    max-width: max-content;
+    padding: 10px 16px;
+    list-style: none;
+    background-color: #eee;
+}
+
+/* Display list items side by side */
+ul.breadcrumb li {
+    display: inline;
+    font-size: 18px;
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+ul.breadcrumb li + li:before {
+    padding: 8px;
+    color: black;
+    content: "/\00a0";
+}
+
+/* Add a color to all links inside the list */
+ul.breadcrumb li a {
+    color: #0275d8;
+    text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+ul.breadcrumb li a:hover {
+    color: #01447e;
+    text-decoration: underline;
+}
+
+.table-responsive {
+    max-height: 210px;
 }

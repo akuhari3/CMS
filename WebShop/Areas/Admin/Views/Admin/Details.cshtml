@@ -5,6 +5,12 @@
     ViewData["Title"] = "Details";
 }
 
+<ul class="breadcrumb">
+  <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+  <li><a asp-controller="Admin" asp-action="Index">Users</a></li>
+  <li>User details</li>
+</ul>
+
 <div class="row justify-content-center">
 
     <div class="col-xl-12 col-lg-12 col-md-9">
@@ -19,6 +25,9 @@
                  </div>
                  <div class="p-3">
                     Last Name
+                 </div>
+                 <div class="p-3">
+                    User Name
                  </div>
                  <div class="p-3">
                     Email Address
@@ -41,6 +50,9 @@
                     @Model.LastName
                  </div>
                  <div class="p-3">
+                    @Model.UserName
+                 </div>
+                 <div class="p-3">
                     @Model.Email
                  </div>
                  <div class="p-3">
@@ -61,12 +73,17 @@
                     }
                     else
                     {
-                        <span>No avatar available!</span>                        
+                        <span>No image available!</span>                        
                     }
                 </div>
              </div>
              </div>
             </div>
+            <div class="form-group d-flex justify-content-start">
+            <a class="btn btn-primary m-5" asp-area="Admin" asp-controller="Admin" asp-action="Index">Back</a>
         </div>
+        </div>
+        
     </div>
 </div>
+

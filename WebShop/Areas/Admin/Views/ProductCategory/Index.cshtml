@@ -4,7 +4,10 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Product Categories</h1>
+<ul class="breadcrumb">
+  <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+  <li>Product categories</li>
+</ul>
 
 <p>
     <a asp-action="Create" asp-route-productId="@ViewBag.ProductId">Create new category for product</a>
