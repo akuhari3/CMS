@@ -56,7 +56,8 @@ namespace WebShop.Controllers
                             ProductName = product.ProductName,
                             ProductDescription = product.ProductDescription,
                             Quantity = product.Quantity,
-                            Price = product.Price
+                            Price = product.Price,
+                            ProductImage = product.ProductImage
                         }
                     ).ToList();
             }
