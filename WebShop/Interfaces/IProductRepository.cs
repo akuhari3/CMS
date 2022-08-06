@@ -20,6 +20,7 @@ namespace WebShop.Interfaces
         Product UpdateProductAPI(Product product);
         void DeleteProductAPI(int id);
         List<Product> QueryStringFilterAPI(string s, string orderBy, int perPage);
+        List<Product> QueryStringFilterProducts(string s, string orderBy, int perPage);
 
     }
 }

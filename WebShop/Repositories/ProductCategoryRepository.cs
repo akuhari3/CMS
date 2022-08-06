@@ -41,6 +41,8 @@ namespace WebShop.Repositories
         public ProductCategory GetProductCategoryById(int id)
         {
             var productCategory = _dbContext.ProductCategory.FirstOrDefault(p => p.Id == id);
+            productCategory.CategoryTitle = _dbContext.Category.FirstOrDefault(c => c.Id == productCategory.CategoryId).CategoryName;
+            productCategory.ProductTitle = _dbContext.Product.FirstOrDefault(c => c.Id == productCategory.ProductId).ProductName;
             return productCategory;
         }
 

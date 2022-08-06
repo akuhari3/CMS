@@ -21,15 +21,10 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Quantity)
                     </td>
-
                     <td>
                         @Html.DisplayFor(modelItem => item.Total)
                     </td>
-                    <td>
-                        <a asp-action="DeleteOrderItem" asp-route-id="@item.Id" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-remove">X</span>
-                        </a>
-                    </td>
+                    <td></td>
                 </tr>
             }
         </tbody>
@@ -37,6 +32,6 @@
 }
 else
 {
-    <h4>No order items yet....</h4>
+    <h4>No order items!</h4>
 }
 

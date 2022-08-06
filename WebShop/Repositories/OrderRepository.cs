@@ -27,6 +27,11 @@ namespace WebShop.Repositories
             return _dbContext.Order.ToList();
         }
 
+        public IEnumerable<Order> GetUserOrders(string userId)
+        {
+            return _dbContext.Order.Where(o => o.UserId == userId).ToList();
+        }
+
         public Order GetOrderById(int id)
         {
             var order = _dbContext.Order.FirstOrDefault(o => o.Id == id);

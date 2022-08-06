@@ -27,9 +27,15 @@ namespace WebShop.Areas.Admin.Controllers
             _roleManager = roleManager;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string filter, string orderBy, int perPage)
         {
-            var users = _userManager.Users;
+            var users = _userManager.Users.ToList();
+            if (filter != null)
+            {
+                orderBy = "asc";
+                perPage = 100;
+                users = _administrationRepository.QueryStringFilterUsers(filter, orderBy, perPage);
+            }
             var usersWithRoles = new List<UserRolesViewModel>();
 
             foreach (ApplicationUser user in users)
@@ -317,9 +323,9 @@ namespace WebShop.Areas.Admin.Controllers
         {
             try
             {
-                var products = _administrationRepository.QueryStringFilterUsers(s, orderBy, perPage);
+                var users = _administrationRepository.QueryStringFilterUsers(s, orderBy, perPage);
 
-                return View(products);
+                return View(users);
             }
             catch (Exception)
             {

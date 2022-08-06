@@ -17,18 +17,21 @@
         <div class="card o-hidden border-0 shadow-lg my-5">
                 <div class="d-flex justify-content-between">
                 <div class="form-group" style="margin:25px;">
-                        <label>Per Page:</label>
-                        <select class="form-control" style="max-width: 70px;" id="BillingCity" name="BillingCountry">
+                    <select class="form-control" style="max-width: 70px;" id="perPage" name="perPage">
                             <option value="5" selected="selected">5</option>
                             <option value="10">10</option>
                             <option value="15">15</option>
                             <option value="20">20</option>
                             <option value="25">25</option>
                         </select>
+                        
                     </div>
                     <div style="margin:25px;">
-                    <label for="gsearch">Search </label>
-                    <input type="search" id="gsearch" name="gsearch">
+      <form asp-controller="Admin" asp-action="Index">
+          
+        <span>Search: </span><input type="text" name="filter"/>
+        <input type="submit" value="Search" class="btn btn-secondary"/>
+        </form>
                 </div>
                 <a asp-action="Create" class="btn btn-primary" style="margin:25px;">Create user</a>
                 </div>
@@ -53,7 +56,6 @@
                 <td>@user.LastName</td>
                 <td>@user.Email</td>
                 <td>@string.Join(" , ", user.Roles)</td>
-                <td></td>
                 <td>
                     <div class="form-group row">
                     <a asp-action="Details" asp-route-id="@user.Id" class="btn btn-sm btn-primary" style="margin:5px;">Details</a> 

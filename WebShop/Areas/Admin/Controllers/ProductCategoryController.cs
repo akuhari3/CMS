@@ -1,9 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Collections.Generic;
-using System.Linq;
-using WebShop.Data;
 using WebShop.Interfaces;
 using WebShop.Models;
 
@@ -83,12 +79,13 @@ namespace WebShop.Areas.Admin.Controllers
 
         public IActionResult Delete(int id)
         {
+            var productCategory = _productCategoryRepository.GetProductCategoryById(id);
 
-            var productCategories = _productCategoryRepository.GetProductCategories(id);
-            return View(productCategories);
+            return View(productCategory);
         }
 
         [HttpPost]
+        [ActionName("Delete")]
         public IActionResult DeleteProductCategory(int id)
         {
             var productCategory = _productCategoryRepository.GetProductCategoryById(id);

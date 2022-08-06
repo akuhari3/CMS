@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebShop.Models
 {
@@ -11,6 +12,7 @@ namespace WebShop.Models
         [NotMapped]
         public string ProductTitle { get; set; }
         [NotMapped]
+        [DisplayName("Category")]
         public string CategoryTitle { get; set; }
     }
 }

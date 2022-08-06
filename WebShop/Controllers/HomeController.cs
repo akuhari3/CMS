@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
@@ -10,6 +11,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using WebShop.Data;
 using WebShop.Extensions;
+using WebShop.Interfaces;
 using WebShop.Models;
 
 namespace WebShop.Controllers
@@ -19,11 +21,20 @@ namespace WebShop.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _dbContext;
         const string _sessionKeyName = "_cart";
+        private readonly IOrderRepository _orderRepository;
+        private readonly IOrderItemRepository _orderItemRepository;
+        private readonly IProductRepository _productRepository;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext dbContext)
+        public HomeController(UserManager<ApplicationUser> userManager, ILogger<HomeController> logger, ApplicationDbContext dbContext, IOrderRepository orderRepository, IOrderItemRepository orderItemRepository, IProductRepository productRepository)
         {
             _logger = logger;
             _dbContext = dbContext;
+            _orderRepository = orderRepository;
+            _orderItemRepository = orderItemRepository;
+            _productRepository = productRepository;
+            _userManager = userManager;
+
         }
 
         public IActionResult Index(string? message)
@@ -36,6 +47,35 @@ namespace WebShop.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public IActionResult MyOrders()
+        {
+            var userId = _userManager.GetUserId(HttpContext.User);
+            return View(_orderRepository.GetUserOrders(userId));
+        }
+
+        public IActionResult OrderDetails(int id)
+        {
+            if (id == 0)
+            {
+                return RedirectToAction("PageNotFound", "HttpStatusCodes");
+            }
+
+            var order = _orderRepository.GetOrderById(id);
+
+            if (order == null)
+            {
+                return RedirectToAction("PageNotFound", "HttpStatusCodes");
+            }
+
+            return View(order);
+        }
+
+        public IActionResult ProductDetails(int id)
+        {
+            var product = _dbContext.Product.FirstOrDefault(p => p.Id == id);
+            return View(product);
         }
 
 

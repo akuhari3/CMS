@@ -6,6 +6,7 @@ namespace WebShop.Interfaces
     public interface IOrderRepository
     {
         IEnumerable<Order> GetOrders();
+        IEnumerable<Order> GetUserOrders(string userId);
         Order GetOrderById(int id);
         void AddOrder(Order order);
         void UpdateOrder(Order order);

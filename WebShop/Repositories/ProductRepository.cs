@@ -233,6 +233,40 @@ namespace WebShop.Repositories
             return pvm;
         }
 
+        public List<Product> QueryStringFilterProducts(string s, string orderBy, int perPage)
+        {
+            var filter = _dbContext.Product.ToList();
+
+            if (!string.IsNullOrEmpty(s))
+            {
+                filter = filter
+                    .Where
+                    (
+                        p => p.ProductName.Contains(s, StringComparison.CurrentCultureIgnoreCase)
+                        || p.ProductDescription.Contains(s, StringComparison.CurrentCultureIgnoreCase)
+                    ).ToList();
+            }
+
+            switch (orderBy)
+            {
+                case "asc":
+                    filter = filter.OrderBy(m => m.Id).ToList();
+                    break;
+                case "desc":
+                    filter = filter.OrderByDescending(m => m.Id).ToList();
+                    break;
+                default:
+                    break;
+            }
+
+            if (perPage > 0)
+            {
+                filter = filter.Take(perPage).ToList();
+            }
+
+            return filter;
+        }
+
         #endregion
 
         #region DropDownList Product
