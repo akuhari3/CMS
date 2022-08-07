@@ -23,11 +23,12 @@
         </dd>
     </dl>
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class = "col-sm-12">
             @Html.DisplayNameFor(model => model.CategoryDescription)
         </dt>
-        <dd class="col-md-4">
-            @Html.DisplayFor(model => model.CategoryDescription)
+
+        <dd class="col-md-8">
+            <textarea asp-for="@Model.CategoryDescription" class="form-control" disabled rows="6"></textarea>
         </dd>
     </dl>
 </div>

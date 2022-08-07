@@ -30,10 +30,12 @@ else
 <table class="table">
     <thead>
         <tr>
-            <th>Id</th>
-            <th>Date Created</th>
-            <th>Total</th>
-            <th></th>
+            <th class="col-1">Id</th>
+            <th class="col-2">Date Created</th>
+            <th class="col-2">Email</th>
+            <th class="col-2">Order State</th>
+            <th class="col-2">Total</th>
+            <th class="col-3"></th>
         </tr>
     </thead>
     <tbody>
@@ -42,6 +44,8 @@ else
             <tr>
                 <td>@Html.DisplayFor(modelItem => item.Id)</td>
                 <td>@Html.DisplayFor(modelItem => item.DateCreated)</td>
+                <td>@Html.DisplayFor(modelItem => item.BillingEmail)</td>
+                <td>@Html.DisplayFor(modelItem => item.OrderState)</td>
                 <td>@Html.DisplayFor(modelItem => item.Total)</td>
                 <td>
                     <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id" >Edit</a>

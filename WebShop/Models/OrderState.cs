@@ -2,6 +2,9 @@
 {
     public enum OrderState
     {
-
+        Ordered,
+        Shipping,
+        Delivered,
+        Payed
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using WebShop.Data;
 using WebShop.Interfaces;
 using WebShop.Models;
@@ -10,13 +11,15 @@ namespace WebShop.Repositories
         #region Fields
 
         private readonly ApplicationDbContext _dbContext;
+        private readonly UserManager<ApplicationUser> _userManager;
 
         #endregion
 
         #region Constructors
-        public OrderRepository(ApplicationDbContext dbContext)
+        public OrderRepository(ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager )
         {
             _dbContext = dbContext;
+            _userManager = userManager;
         }
 
         #endregion
@@ -30,6 +33,12 @@ namespace WebShop.Repositories
         public IEnumerable<Order> GetUserOrders(string userId)
         {
             return _dbContext.Order.Where(o => o.UserId == userId).ToList();
+        }
+
+        public ApplicationUser GetUserFromId(string id)
+        {
+            var user = _userManager.Users.FirstOrDefault(u => u.Id == id);
+            return user;
         }
 
         public Order GetOrderById(int id)
@@ -107,7 +116,7 @@ namespace WebShop.Repositories
 
         #endregion
 
-        #region DropDownList Users
+        #region DropDownList
 
         public List<SelectListItem> GetUsersForDropDownList()
         {
@@ -119,9 +128,19 @@ namespace WebShop.Repositories
             }).ToList();
 
         }
+
+        public List<SelectListItem> OrderStatesForDropDownList()
+        {
+            return Enum.GetValues(typeof(OrderState)).Cast<OrderState>().Select(v => new SelectListItem
+            {
+                Text = v.ToString(),
+                Value = ((int)v).ToString()
+            }).ToList();
+        }
+
         #endregion
 
 
-        
+
     }
 }

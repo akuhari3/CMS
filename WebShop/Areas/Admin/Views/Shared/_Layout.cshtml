@@ -24,8 +24,8 @@
           <img src="~/images/users/new.jpg" width="40" height="40" class="rounded-circle">
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Dashboard</a>
-          <a class="dropdown-item" href="#">Edit Profile</a>
+          <a class="dropdown-item" href="/Admin/Dashboard">Dashboard</a>
+          <a class="dropdown-item" href="/Admin/Admin">Administration</a>
           <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
 
             <button  type="submit" class="dropdown-item">Logout</button>

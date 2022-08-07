@@ -45,19 +45,28 @@ namespace WebShop.Areas.Admin.Controllers
             }
 
             var order = _orderRepository.GetOrderById(id);
+            var orderItems = _orderItemRepository.GetOrderItemsByOrderId(id);
+            ViewBag.OrderItems = orderItems;
 
             if (order == null)
             {
                 return RedirectToAction("PageNotFound", "HttpStatusCodes");
             }
-
+            ViewBag.User = _orderRepository.GetUserFromId(order.UserId);
+            decimal count = 0;
+            foreach (var item in orderItems)
+            {
+                count += item.Price * item.Quantity;
+            }
+            order.Total = count;
+            ViewBag.TotalPrice = count;
             return View(order);
         }
 
         public IActionResult Create()
         {
             ViewBag.Users = _orderRepository.GetUsersForDropDownList();
-
+            ViewBag.OrderStates = _orderRepository.OrderStatesForDropDownList();
             return View();
         }
 
@@ -89,6 +98,8 @@ namespace WebShop.Areas.Admin.Controllers
             }
 
             ViewBag.Users = _orderRepository.GetUsersForDropDownList();
+            ViewBag.OrderStates = _orderRepository.OrderStatesForDropDownList();
+
 
             return View(order);
         }
@@ -108,6 +119,7 @@ namespace WebShop.Areas.Admin.Controllers
             }
 
             ViewBag.Users = _orderRepository.GetUsersForDropDownList();
+            ViewBag.OrderStates = _orderRepository.OrderStatesForDropDownList();
 
             return View(order);
         }
@@ -157,7 +169,7 @@ namespace WebShop.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddOrderItem([Bind("OrderId, ProductId, Total, Quantity")] OrderItem orderItem)
+        public IActionResult AddOrderItem([Bind("OrderId, ProductId, Price, Quantity")] OrderItem orderItem)
         {
             if (ModelState.IsValid)
             {

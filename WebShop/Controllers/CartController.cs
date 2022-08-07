@@ -38,6 +38,7 @@ namespace WebShop.Controllers
                 {
                     Product = product,
                     Quantity = 1
+                    
                 };
 
                 cartSession.Add(cartItem);

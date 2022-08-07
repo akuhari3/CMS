@@ -1,5 +1,6 @@
-﻿@model List<OrderItem>
-
+﻿@{
+   
+}
 @if (Model != null && Model.Count > 0)
 {
     <table class="table">
@@ -7,26 +8,38 @@
             <tr>
                 <th>Product</th>
                 <th>Quantity</th>
+                <th>Price</th>
                 <th>Total</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+            @foreach (var item in ViewBag.OrderItems)
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ProductName)
+                        @item.ProductName
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Quantity)
+                        @item.Quantity
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Total)
+                        @item.Price
+                    </td>
+                    <td>
+                        @((item.Quantity * item.Price).ToString("c"))
                     </td>
                     <td></td>
                 </tr>
             }
+            <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <b>Total price: @ViewBag.TotalPrice Kn</b>
+                    <td>
+                </tr>
         </tbody>
     </table>
 }

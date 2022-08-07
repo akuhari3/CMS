@@ -63,11 +63,21 @@ namespace WebShop.Controllers
             }
 
             var order = _orderRepository.GetOrderById(id);
+            var orderItems = _orderItemRepository.GetOrderItemsByOrderId(id);
+            ViewBag.OrderItems = orderItems;
 
             if (order == null)
             {
                 return RedirectToAction("PageNotFound", "HttpStatusCodes");
             }
+            ViewBag.User = _orderRepository.GetUserFromId(order.UserId);
+            decimal count = 0;
+            foreach (var item in orderItems)
+            {
+                count += item.Price * item.Quantity;
+            }
+            order.Total = count;
+            ViewBag.TotalPrice = count;
 
             return View(order);
         }
@@ -77,9 +87,21 @@ namespace WebShop.Controllers
             var product = _dbContext.Product.FirstOrDefault(p => p.Id == id);
             return View(product);
         }
+        //public IActionResult Index(string filter, string orderBy, int perPage)
+        //{
+        //    var products = _productRepository.GetProducts();
+        //    if (filter != null)
+        //    {
+        //        orderBy = "asc";
+        //        perPage = 100;
+        //        products = _productRepository.QueryStringFilterProducts(filter, orderBy, perPage);
+        //        return View(products);
+        //    }
+        //    return View(products);
+        //}
 
 
-        public IActionResult Product(int? categoryId)
+        public IActionResult Product(int? categoryId, string filter, string orderBy, int perPage)
         {
             List<Product> products = _dbContext.Product.ToList();
 
@@ -112,7 +134,15 @@ namespace WebShop.Controllers
                     }
                 );
 
-            return View(products);
+            if (filter != null)
+                    {
+                        orderBy = "asc";
+                        perPage = 100;
+                        products = _productRepository.QueryStringFilterProducts(filter, orderBy, perPage);
+                        return View(products);
+                    }
+
+                return View(products);
         }
 
 
@@ -162,7 +192,8 @@ namespace WebShop.Controllers
                         OrderId = orderId,
                         ProductId = cartItem.Product.Id,
                         Quantity = cartItem.Quantity,
-                        Total = cartItem.GetTotal()
+                        Total = cartItem.GetTotal(),
+                        Price = cartItem.Product.Price
                     };
 
                     _dbContext.OrderItem.Add(orderItem);

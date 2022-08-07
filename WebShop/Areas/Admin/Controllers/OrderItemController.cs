@@ -13,16 +13,18 @@ namespace WebShop.Areas.Admin.Controllers
         #region Fields
 
         private readonly IOrderRepository _orderRepository;
+        private readonly IOrderItemRepository _orderItemRepository;
         private readonly IProductRepository _productRepository;
 
         #endregion
 
         #region Constructors
 
-        public OrderItemController(IOrderRepository orderRepository, IProductRepository productRepository)
+        public OrderItemController(IOrderRepository orderRepository, IProductRepository productRepository, IOrderItemRepository orderItemRepository)
         {
             _orderRepository = orderRepository;
             _productRepository = productRepository;
+            _orderItemRepository = orderItemRepository;
         }
         #endregion
 
@@ -30,7 +32,8 @@ namespace WebShop.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var orderItems = _orderItemRepository.GetOrderItems();
+            return View(orderItems);
         }
 
         [HttpGet]
