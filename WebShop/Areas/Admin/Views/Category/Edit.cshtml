@@ -28,20 +28,18 @@
                 <span asp-validation-for="CategoryName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CategoryDescription" class="control-label"></label>
-                <input asp-for="CategoryDescription" class="form-control" />
-                <span asp-validation-for="CategoryDescription" class="text-danger"></span>
-            </div>
-            
-            <div class="form-group">
                 <label asp-for="CategoryImage" class="col-form-label"></label>
 
                         <div class="custom-file">
                             <input class="form-control custom-file-input" asp-for="CategoryImage" />
                             <label class="custom-file-label">Select image</label>
                         </div>
-
              </div>
+             <div class="form-group">
+                <label asp-for="CategoryDescription" class="control-label"></label>
+                <textarea asp-for="CategoryDescription" class="form-control" rows="6"></textarea>
+                <span asp-validation-for="CategoryDescription" class="text-danger"></span>
+            </div>
 
              <div class="btn-group">
             <div class="form-group">

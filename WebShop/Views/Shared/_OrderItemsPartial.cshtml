@@ -24,11 +24,11 @@
                         @item.Quantity
                     </td>
                     <td>
-                        @item.Price
+                        @item.Price$
                     </td>
                     <td>
-                        @((item.Quantity * item.Price).ToString("c"))
-                    </td>
+                        @((item.Quantity * item.Price).ToString("F"))$
+                    <td>
                     <td></td>
                 </tr>
             }
@@ -37,7 +37,6 @@
                     <td></td>
                     <td></td>
                     <td>
-                        <b>Total price: @ViewBag.TotalPrice Kn</b>
                     <td>
                 </tr>
         </tbody>

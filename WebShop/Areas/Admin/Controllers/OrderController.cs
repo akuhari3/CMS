@@ -169,11 +169,21 @@ namespace WebShop.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddOrderItem([Bind("OrderId, ProductId, Price, Quantity")] OrderItem orderItem)
+        public IActionResult AddOrderItem([Bind("OrderId, ProductId, Price, Quantity, Total")] OrderItem orderItem)
         {
             if (ModelState.IsValid)
             {
+                var order = _orderRepository.GetCleanOrderById(orderItem.OrderId);
                 _orderItemRepository.CreateOrderItem(orderItem);
+                var items = _orderItemRepository.GetOrderItemsByOrderId(orderItem.OrderId);
+                decimal total = 0;
+                foreach (var item in items)
+                {
+                    total += item.Price * item.Quantity;
+                }
+                order.Total = total;
+
+                _orderRepository.UpdateOrder(order);
 
                 return RedirectToAction("Details", new { id = orderItem.OrderId });
             }
@@ -184,7 +194,22 @@ namespace WebShop.Areas.Admin.Controllers
         public IActionResult DeleteOrderItem(int id)
         {
             var orderItem = _orderItemRepository.GetOrderItemById(id);
+            var order = _orderRepository.GetCleanOrderById(orderItem.OrderId);
+            
             _orderItemRepository.DeleteOrderItem(id);
+            var items = _orderItemRepository.GetOrderItemsByOrderId(orderItem.OrderId);
+            decimal total = 0;
+            foreach (var item in items)
+            {
+                total += item.Price * item.Quantity;
+            }
+            if (total != 0)
+            {
+                order.Total = total;
+            }
+            
+
+            _orderRepository.UpdateOrder(order);
 
             return RedirectToAction("Details", new { id = orderItem.OrderId });
         }

@@ -16,14 +16,6 @@
     </dl>
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProductDescription)
-        </dt>
-        <dd class="col-md-4">
-            @Html.DisplayFor(model => model.ProductDescription)
-        </dd>
-    </dl>
-    <dl class="row">
-        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Quantity)
         </dt>
         <dd class="col-md-4">
@@ -38,6 +30,14 @@
             @Html.DisplayFor(model => model.Price)$
         </dd>
     </dl>
+        <dl class="row">
+            <dt class="col-sm-12">
+                @Html.DisplayNameFor(model => model.ProductDescription)
+            </dt>
+            <dd class="col-md-8">
+                <textarea asp-for="@Model.ProductDescription" class="form-control" disabled rows="6"></textarea>
+            </dd>
+        </dl>
 </div>
 <div class="col-md-6">
     <img class="card-img-top" style="max-width: fit-content" src="@photoPath" asp-append-version="true" />

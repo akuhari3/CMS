@@ -79,14 +79,18 @@
             @Html.DisplayNameFor(model => model.DateCreated)
         </b>
         @Html.DisplayFor(model => model.DateCreated)
+    <b>
+        @Html.DisplayNameFor(model => model.OrderState)
+    </b>
+    @Html.DisplayFor(model => model.OrderState)
         <b>
             Order by:
         </b>
         @ViewBag.User.Email
         <b>
-            @Html.DisplayNameFor(model => model.Total)
+            Total Order Price: 
         </b>
-        @Html.DisplayFor(model => model.Total)
+        @Html.DisplayFor(model => model.Total)$
 </div>
 
 <br />

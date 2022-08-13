@@ -70,6 +70,12 @@ namespace WebShop.Repositories
             return order;
         }
 
+        public Order GetCleanOrderById(int id)
+        {
+            var order = _dbContext.Order.FirstOrDefault(o => o.Id == id);
+            return order;
+        }
+
         public void AddOrder(Order order)
         {
             _dbContext.Order.Add(order);

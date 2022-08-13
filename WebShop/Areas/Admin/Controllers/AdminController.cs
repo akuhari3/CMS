@@ -30,10 +30,10 @@ namespace WebShop.Areas.Admin.Controllers
         public async Task<IActionResult> Index(string filter, string orderBy, int perPage)
         {
             var users = _userManager.Users.ToList();
-            if (filter != null)
+            if (filter != null || perPage > 0)
             {
                 orderBy = "asc";
-                perPage = 100;
+                //perPage = 100;
                 users = _administrationRepository.QueryStringFilterUsers(filter, orderBy, perPage);
             }
             var usersWithRoles = new List<UserRolesViewModel>();

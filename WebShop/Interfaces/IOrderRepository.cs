@@ -15,6 +15,7 @@ namespace WebShop.Interfaces
 
         List<SelectListItem> GetUsersForDropDownList();
         List<SelectListItem> OrderStatesForDropDownList();
+        Order GetCleanOrderById(int id);
 
 
     }

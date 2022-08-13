@@ -15,11 +15,9 @@ namespace WebShop.Models
         [Display(Name = "Description")]
         public string ProductDescription { get; set; }
         [Required(ErrorMessage = "Product quantity is required!")]
-        [Column(TypeName = "decimal(9,2)")]
         [Display(Name = "Quantity")]
         public decimal Quantity { get; set; }
         [Required(ErrorMessage = "Product price is required!")]
-        [Column(TypeName = "decimal(9,2)")]
         [Display(Name = "Price")]
         public decimal Price { get; set; }
         [Display(Name = "Product Image")]

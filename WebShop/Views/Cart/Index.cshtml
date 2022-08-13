@@ -42,9 +42,9 @@ else
                         <a class="btn btn-sm btn-danger" asp-action="RemoveFromCart" asp-route-productId="@item.Product.Id">Remove</a>
                     </td>
                     <td>@item.Product.ProductName</td>
-                    <td>@item.Product.Price Kn</td>
+                    <td>@item.Product.Price $</td>
                     <td>@item.Quantity</td>
-                    <td>@item.GetTotal() Kn</td>
+                    <td>@item.GetTotal().ToString("F")$</td>
                 </tr>
             }
             <tr>
@@ -53,7 +53,7 @@ else
                 <td></td>
                 <td></td>
                 <td>
-                    <b>Total price: @ViewBag.TotalPrice Kn</b>
+                 <b>Total price: @ViewBag.TotalPrice.ToString("F")$</b>
                 </td>
             </tr>
         </tbody>

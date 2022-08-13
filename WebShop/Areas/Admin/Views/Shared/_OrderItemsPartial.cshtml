@@ -25,10 +25,10 @@
                         @item.Quantity
                     </td>
                     <td>
-                        @item.Price
+                        @item.Price$
                     </td>
                     <td>
-                        @((item.Quantity * item.Price).ToString("c"))
+                        @((item.Quantity * item.Price).ToString("F"))$
                     <td>
                         <a asp-action="DeleteOrderItem" asp-route-id="@item.Id" class="btn btn-danger">
                             <span class="glyphicon glyphicon-remove">X</span>
@@ -41,7 +41,6 @@
                     <td></td>
                     <td></td>
                     <td>
-                        <b>Total price: @ViewBag.TotalPrice Kn</b>
                     <td>
                 </tr>
         </tbody>
