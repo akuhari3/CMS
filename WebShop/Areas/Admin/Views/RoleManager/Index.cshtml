@@ -5,17 +5,15 @@
 }
 
 <ul class="breadcrumb">
-  <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-  <li>Role manager</li>
+    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+    <li>Role manager</li>
 </ul>
-
 <form method="post" asp-action="AddRole" asp-controller="RoleManager">
     <div class="input-group">
         <input name="roleName" class="form-control w-25" />
         <span class="input-group-btn">
             <button class="btn btn-info">Add new role</button>
         </span>
-
     </div>
 </form>
 <table class="table table-striped">
@@ -26,7 +24,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(var item in Model)
+        @foreach (var item in Model)
         {
             <tr>
                 <td>@item.Id</td>

@@ -3,33 +3,32 @@
     ViewData["Title"] = "ProductDetails";
     var photoPath = "~/images/products/" + (Model.ProductImage ?? "no-photo.png");
 }
-
 <div class="row">
     <div class="col-md-6">
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProductName)
-        </dt>
-        <dd class="col-md-4">
-            @Html.DisplayFor(model => model.ProductName)
-        </dd>
-    </dl>
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
-        <dd class="col-md-4">
-            @Html.DisplayFor(model => model.Quantity)pcs
-        </dd>
-    </dl>
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class="col-md-4">
-            @Html.DisplayFor(model => model.Price)$
-        </dd>
-    </dl>
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ProductName)
+            </dt>
+            <dd class="col-md-4">
+                @Html.DisplayFor(model => model.ProductName)
+            </dd>
+        </dl>
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Quantity)
+            </dt>
+            <dd class="col-md-4">
+                @Html.DisplayFor(model => model.Quantity)pcs
+            </dd>
+        </dl>
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+            <dd class="col-md-4">
+                @Html.DisplayFor(model => model.Price)$
+            </dd>
+        </dl>
         <dl class="row">
             <dt class="col-sm-12">
                 @Html.DisplayNameFor(model => model.ProductDescription)
@@ -38,10 +37,9 @@
                 <textarea asp-for="@Model.ProductDescription" class="form-control" disabled rows="6"></textarea>
             </dd>
         </dl>
+    </div>
+    <div class="col-md-6">
+        <img class="card-img-top" style="max-width: fit-content" src="@photoPath" asp-append-version="true" />
+    </div>
+    <a class="btn btn-secondary" asp-action="Product">Back</a>
 </div>
-<div class="col-md-6">
-    <img class="card-img-top" style="max-width: fit-content" src="@photoPath" asp-append-version="true" />
-</div>
-<a class="btn btn-secondary" asp-action="Product">Back</a>
-</div>
-

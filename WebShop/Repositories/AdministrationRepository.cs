@@ -33,7 +33,7 @@ namespace WebShop.Repositories
             return _userManager.Users;
         }
 
-        
+
 
         public async Task<IdentityResult> AddUser(UserViewModel user)
         {
@@ -196,11 +196,6 @@ namespace WebShop.Repositories
 
         #endregion
 
-        #region Dropdown Users
-
-
-        #endregion
-
         #region Dropdown Timezones
         public List<SelectListItem> TimezonesForDropDownList()
         {
@@ -212,9 +207,5 @@ namespace WebShop.Repositories
         }
 
         #endregion
-
-
-
-
     }
 }

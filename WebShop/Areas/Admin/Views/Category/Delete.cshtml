@@ -5,13 +5,11 @@
 }
 
 <ul class="breadcrumb">
-  <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-  <li><a asp-controller="Category" asp-action="Index">Categories</a></li>
-  <li>Delete category</li>
+    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+    <li><a asp-controller="Category" asp-action="Index">Categories</a></li>
+    <li>Delete category</li>
 </ul>
-
 <h4>Are you sure you want to delete this category?</h4>
-
 <div class="row">
     <div class="col-md-6">
         <dl class="row">
@@ -26,7 +24,6 @@
             <dt class="col-sm-12">
                 @Html.DisplayNameFor(model => model.CategoryDescription)
             </dt>
-
             <dd class="col-md-8">
                 <textarea asp-for="@Model.CategoryDescription" class="form-control" disabled rows="6"></textarea>
             </dd>
@@ -35,16 +32,13 @@
     <div class="col-md-6">
         <img class="card-img-top" style="max-width: fit-content" src="@photoPath" asp-append-version="true" />
     </div>
-
-
-
-<div class="row">
-    <div class="btn-group">
-    <form asp-action="Delete">
-        <a class="btn btn-secondary" asp-action="Index">Back</a>
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" />
-    </form>
+    <div class="row">
+        <div class="btn-group">
+            <form asp-action="Delete">
+                <a class="btn btn-secondary" asp-action="Index">Back</a>
+                <input type="hidden" asp-for="Id" />
+                <input type="submit" value="Delete" class="btn btn-danger" />
+            </form>
+        </div>
     </div>
-</div>
 </div>

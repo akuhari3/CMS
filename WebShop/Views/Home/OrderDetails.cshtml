@@ -4,7 +4,6 @@
 }
 
 <div class="row justify-content-center">
-
     <div class="col-xl-12 col-lg-12 col-md-12">
         <div class="card o-hidden border-0 shadow-lg my-5">
             <div class="card-body p-0">
@@ -12,45 +11,39 @@
                     <div class="col-lg-12">
                         <div class="p-5">
                             <h4>Billing and delivery: </h4>
-    <br />
-<table class="table">
-    <thead>
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.BillingFirstName)</th>
-            <th>@Html.DisplayNameFor(model => model.BillingLastName)</th>
-            <th>@Html.DisplayNameFor(model => model.BillingEmail)</th>
-            <th>@Html.DisplayNameFor(model => model.BillingPhone)</th>
-            <th>@Html.DisplayNameFor(model => model.BillingAddress)</th>
-            <th>@Html.DisplayNameFor(model => model.BillingCity)</th>
-            <th>@Html.DisplayNameFor(model => model.BillingZip)</th>
-            <th>@Html.DisplayNameFor(model => model.BillingCountry)</th>
-        </tr>
-    </thead>
-
-    <tbody>
-
-        <tr>
-            <td>@Html.DisplayFor(model => model.BillingFirstName)</td>
-            <td>@Html.DisplayFor(model => model.BillingLastName)</td>
-            <td>@Html.DisplayFor(model => model.BillingEmail)</td>
-            <td>@Html.DisplayFor(model => model.BillingPhone)</td>
-            <td>@Html.DisplayFor(model => model.BillingAddress)</td>
-            <td>@Html.DisplayFor(model => model.BillingCity)</td>
-            <td>@Html.DisplayFor(model => model.BillingZip)</td>
-            <td>@Html.DisplayFor(model => model.BillingCountry)</td>
-        </tr>
-    </tbody>
-</table>
+                            <br />
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>@Html.DisplayNameFor(model => model.BillingFirstName)</th>
+                                        <th>@Html.DisplayNameFor(model => model.BillingLastName)</th>
+                                        <th>@Html.DisplayNameFor(model => model.BillingEmail)</th>
+                                        <th>@Html.DisplayNameFor(model => model.BillingPhone)</th>
+                                        <th>@Html.DisplayNameFor(model => model.BillingAddress)</th>
+                                        <th>@Html.DisplayNameFor(model => model.BillingCity)</th>
+                                        <th>@Html.DisplayNameFor(model => model.BillingZip)</th>
+                                        <th>@Html.DisplayNameFor(model => model.BillingCountry)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>@Html.DisplayFor(model => model.BillingFirstName)</td>
+                                        <td>@Html.DisplayFor(model => model.BillingLastName)</td>
+                                        <td>@Html.DisplayFor(model => model.BillingEmail)</td>
+                                        <td>@Html.DisplayFor(model => model.BillingPhone)</td>
+                                        <td>@Html.DisplayFor(model => model.BillingAddress)</td>
+                                        <td>@Html.DisplayFor(model => model.BillingCity)</td>
+                                        <td>@Html.DisplayFor(model => model.BillingZip)</td>
+                                        <td>@Html.DisplayFor(model => model.BillingCountry)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                   
                 </div>
             </div>
         </div>
-
-</div>
-
-
+    </div>
     <div class="col-xl-12 col-lg-12 col-md-9">
         <div class="card o-hidden border-0 shadow-lg my-5">
             <div class="card-body p-0">
@@ -58,11 +51,10 @@
                     <div class="col-lg-12">
                         <div class="p-5">
                             <h4>Ordering items: </h4>
-    <br />
-<partial name="_OrderItemsPartial" for="@Model.OrderItems" />
-</div>
+                            <br />
+                            <partial name="_OrderItemsPartial" for="@Model.OrderItems" />
+                        </div>
                     </div>
-                   
                 </div>
             </div>
         </div>
@@ -70,27 +62,24 @@
 </div>
 <hr />
 <div class="d-flex justify-content-between">
-        <b>
-            @Html.DisplayNameFor(model => model.DateCreated)
-        </b>
-        @Html.DisplayFor(model => model.DateCreated)
+    <b>
+        @Html.DisplayNameFor(model => model.DateCreated)
+    </b>
+    @Html.DisplayFor(model => model.DateCreated)
     <b>
         @Html.DisplayNameFor(model => model.OrderState)
     </b>
     @Html.DisplayFor(model => model.OrderState)
-        <b>
-            Order by:
-        </b>
-        @ViewBag.User.Email
-        <b>
-        Total Order Price: 
+    <b>
+        Order by:
     </b>
-        @Html.DisplayFor(model => model.Total)$
+    @ViewBag.User.Email
+    <b>
+        Total Order Price:
+    </b>
+    @Html.DisplayFor(model => model.Total)$
 </div>
-
 <br />
-
 <div>
     <a class="btn btn-secondary" asp-action="Index">Back</a>
-
 </div>

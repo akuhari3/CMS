@@ -6,25 +6,22 @@
     <title>@ViewData["Title"] - WebShop</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-
 </head>
 <body>
     <header>
         <nav class="navbar align-content-md-start navbar-expand-sm">
-  <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WebShop</a>
-
-   <ul class="navbar-nav flex-grow-1 m-2">
-       <partial name="_AdminMenuPartial" />
-       </ul>
-  <partial name="_LoginPartial" />
-</nav>
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WebShop</a>
+            <ul class="navbar-nav flex-grow-1 m-2">
+                <partial name="_AdminMenuPartial" />
+            </ul>
+            <partial name="_LoginPartial" />
+        </nav>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2022 - WebShop - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>

@@ -6,39 +6,39 @@
 @inject UserManager<ApplicationUser> UserManager
     
 
-@if(SignInManager.IsSignedIn(User) && await UserManager.IsInRoleAsync(UserManager.GetUserAsync(User).Result, "Admin"))
+@if (SignInManager.IsSignedIn(User) && await UserManager.IsInRoleAsync(UserManager.GetUserAsync(User).Result, "Admin"))
 {
     <li class="nav-item">
         <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Category">Categories</a>
-        </li>
-        <li class="nav-item">
+    </li>
+    <li class="nav-item">
         <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Product">Products</a>
-        </li>
-        <li class="nav-item">
+    </li>
+    <li class="nav-item">
         <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Order">Orders</a>
     </li>
     <li class="nav-item">
-    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="MyOrders">My Orders</a>
-</li>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="MyOrders">My Orders</a>
+    </li>
 }
-
-else if(SignInManager.IsSignedIn(User))
+else if (SignInManager.IsSignedIn(User))
 {
-<li class="nav-item">
-    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="MyOrders">My Orders</a>
-</li>
-<li class="nav-item">
-<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Product">Products</a>
-</li>
-<li class="nav-item">
-<a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index">Cart</a>
-</li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="MyOrders">My Orders</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Product">Products</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index">Cart</a>
+    </li>
 }
-else{
-<li class="nav-item">
-<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Product">Products</a>
-</li>
-<li class="nav-item">
-<a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index">Cart</a>
-</li>
+else
+{
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Product">Products</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index">Cart</a>
+    </li>
 }

@@ -5,14 +5,12 @@
 }
 
 <ul class="breadcrumb">
-  <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-  <li>Product categories</li>
+    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+    <li>Product categories</li>
 </ul>
-
 <p>
     <a class="btn btn-success" asp-action="Create" asp-route-productId="@ViewBag.ProductId">Add category</a>
 </p>
-
 <table class="table">
     <thead>
         <tr>
@@ -37,7 +35,6 @@
         }
     </tbody>
 </table>
-
 <p>
     <a class="btn btn-secondary" asp-action="Index" asp-controller="Product">Back</a>
 </p>

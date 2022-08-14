@@ -13,59 +13,56 @@
 else
 {
     <div class="row justify-content-center">
-
-    <div class="col-xl-12 col-lg-12 col-md-9">
-        <div class="card o-hidden border-0 shadow-lg my-5">
-            <div class="card-body p-0">
-                <div class="row">
-                    <div class="col-lg-12">
-
-    <div class="text-center">
-        <h1>Cart items</h1>
-    </div>
-
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Product</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Total</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        <a class="btn btn-sm btn-danger" asp-action="RemoveFromCart" asp-route-productId="@item.Product.Id">Remove</a>
-                    </td>
-                    <td>@item.Product.ProductName</td>
-                    <td>@item.Product.Price $</td>
-                    <td>@item.Quantity</td>
-                    <td>@item.GetTotal().ToString("F")$</td>
-                </tr>
-            }
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                 <b>Total price: @ViewBag.TotalPrice.ToString("F")$</b>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <div class="m-3 d-flex justify-content-between">
-    <a class="btn btn-primary" asp-controller="Home" asp-action="Product">Continue</a>
-    <a class="btn btn-success" asp-controller="Home" asp-action="Order">Order products</a>
-    </div>
-                   </div>
+        <div class="col-xl-12 col-lg-12 col-md-9">
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="text-center">
+                                <h1>Cart items</h1>
+                            </div>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Product</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <a class="btn btn-sm btn-danger" asp-action="RemoveFromCart" asp-route-productId="@item.Product.Id">Remove</a>
+                                            </td>
+                                            <td>@item.Product.ProductName</td>
+                                            <td>@item.Product.Price $</td>
+                                            <td>@item.Quantity</td>
+                                            <td>@item.GetTotal().ToString("F")$</td>
+                                        </tr>
+                                    }
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <b>Total price: @ViewBag.TotalPrice.ToString("F")$</b>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="m-3 d-flex justify-content-between">
+                                <a class="btn btn-primary" asp-controller="Home" asp-action="Product">Continue</a>
+                                <a class="btn btn-success" asp-controller="Home" asp-action="Order">Order products</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 }

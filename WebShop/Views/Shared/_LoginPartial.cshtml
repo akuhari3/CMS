@@ -2,55 +2,49 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
-    @{
-
+@{
     var user = await UserManager.GetUserAsync(User);
-    }
-
+}
 <ul class="navbar-nav">
-@if (SignInManager.IsSignedIn(User))
-{
-
+    @if (SignInManager.IsSignedIn(User))
+    {
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <div>
+                <div>
                     @if (user.Avatar != null)
-                        {
+                    {
                         <img width="40" height="40" class="rounded-circle" src="data:image/*;base64,@Convert.ToBase64String(user.Avatar)" />
-                        }
-                        else
-                        {
+                    }
+                    else
+                    {
                         <span><img src="~/images/users/no-photo.jpg" width="40" height="40" class="rounded-circle"></span>
-                        }
-                    </div>
-                
+                    }
+                </div>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="/Admin/Dashboard">Dashboard</a>
                 <a class="dropdown-item" href="/Admin/Admin">Administration</a>
                 <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-
                     <button type="submit" class="dropdown-item">Logout</button>
                 </form>
             </div>
         </li>
         <li class="nav-item flex-grow-1">
-        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
         </li>
         <li class="nav-item">
             <form class="form-inline flex-grow-1" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-
-            <button type="submit" class="dropdown-item">Logout</button>
-        </form>
+                <button type="submit" class="dropdown-item">Logout</button>
+            </form>
         </li>
     }
-else
-{
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    </li>
-}
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </li>
+    }
 </ul>

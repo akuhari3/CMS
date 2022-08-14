@@ -5,67 +5,61 @@
 
 <h3>Product list</h3>
 <div class="d-flex justify-content-between row">
-
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Filter by category
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                @foreach (var item in ViewBag.Categories)
-                {
-                    <a class="dropdown-item" asp-action="Product" asp-route-categoryId="@item.Value">@item.Text</a>
-                }
-            </div>
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Filter by category
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            @foreach (var item in ViewBag.Categories)
+            {
+                <a class="dropdown-item" asp-action="Product" asp-route-categoryId="@item.Value">@item.Text</a>
+            }
         </div>
-
+    </div>
     <div class="col-md-2">
         <a asp-action="Product" class="btn btn-warning">Reset filters</a>
     </div>
-<form asp-controller="Home" asp-action="Product">
-        <span>Search: </span><input type="text" name="filter"/>
-        <input type="submit" value="Search" class="btn btn-secondary"/>
-        </form>
-        </div>
-
-        <br />
+    <form asp-controller="Home" asp-action="Product">
+        <span>Search: </span><input type="text" name="filter" />
+        <input type="submit" value="Search" class="btn btn-secondary" />
+    </form>
+</div>
+<br />
 <div class="row">
     @foreach (var item in Model)
     {
         <div class="d-flex align-items-start" style="padding: 20px">
-
             <div class="card" style="width:300px">
-  <img class="card-img-top" src="~/images/products/@item.ProductImage" alt="Card image">
-  <div class="card-body">
-    <h4 class="card-title">@item.ProductName</h4>
-    <p class="card-text"><table class="table table-condensed table-hover">
-                        <thead>
-                            <tr>
-                                <th>Price</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>@item.Price Kn</td>
-                                <td>
-                                    
-
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table></p>
-                    
+                <img class="card-img-top" src="~/images/products/@item.ProductImage" alt="Card image">
+                <div class="card-body">
+                    <h4 class="card-title">@item.ProductName</h4>
+                    <p class="card-text">
+                        <table class="table table-condensed table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Price</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>@item.Price Kn</td>
+                                    <td>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </p>
                     <form method="post" asp-controller="Cart" asp-action="AddToCart">
-                       <input type="hidden" name="productId" value="@item.Id" />
-                       <input type="hidden" name="quantity" value="1" />
-                       <div class="form-group d-flex justify-content-between">
-                        <a class="btn btn-primary" asp-action="ProductDetails" asp-route-id="@item.Id">Details</a>
-                       <input type="submit" class="btn btn-success" value="Add to cart" />
-                       </div>
+                        <input type="hidden" name="productId" value="@item.Id" />
+                        <input type="hidden" name="quantity" value="1" />
+                        <div class="form-group d-flex justify-content-between">
+                            <a class="btn btn-primary" asp-action="ProductDetails" asp-route-id="@item.Id">Details</a>
+                            <input type="submit" class="btn btn-success" value="Add to cart" />
+                        </div>
                     </form>
-                    
-  </div>
-</div>
+                </div>
+            </div>
         </div>
     }
 </div>
