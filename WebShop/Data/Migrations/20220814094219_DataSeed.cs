@@ -4,7 +4,7 @@
 
 namespace WebShop.Data.Migrations
 {
-    public partial class Data : Migration
+    public partial class DataSeed : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,16 +13,16 @@ namespace WebShop.Data.Migrations
                 columns: new[] { "Id", "CategoryDescription", "CategoryImage", "CategoryName" },
                 values: new object[,]
                 {
-                    { 1, "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ", "category1.jpeg", "Test Category 1" },
-                    { 2, "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ", "category2.jpeg", "Test Category 2" },
-                    { 3, "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ", "category3.jpeg", "Test Category 3" },
-                    { 4, "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ", "category4.jpeg", "Test Category 4" },
-                    { 5, "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ", "category5.jpeg", "Test Category 5" },
-                    { 6, "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ", "category6.jpeg", "Test Category 6" },
-                    { 7, "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ", "category7.jpeg", "Test Category 7" },
-                    { 8, "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ", "category8.jpeg", "Test Category 8" },
-                    { 9, "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ", "category9.jpeg", "Test Category 9" },
-                    { 10, "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ", "category10.jpeg", "Test Category 10" }
+                    { 1, "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ", "category1.jpg", "Test Category 1" },
+                    { 2, "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ", "category2.jpg", "Test Category 2" },
+                    { 3, "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ", "category3.jpg", "Test Category 3" },
+                    { 4, "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ", "category4.jpg", "Test Category 4" },
+                    { 5, "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ", "category5.jpg", "Test Category 5" },
+                    { 6, "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ", "category6.jpg", "Test Category 6" },
+                    { 7, "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ", "category7.jpg", "Test Category 7" },
+                    { 8, "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ", "category8.jpg", "Test Category 8" },
+                    { 9, "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ", "category9.jpg", "Test Category 9" },
+                    { 10, "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ", "category10.jpg", "Test Category 10" }
                 });
 
             migrationBuilder.InsertData(
@@ -30,26 +30,26 @@ namespace WebShop.Data.Migrations
                 columns: new[] { "Id", "Price", "ProductDescription", "ProductImage", "ProductName", "Quantity" },
                 values: new object[,]
                 {
-                    { 1, 1m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product1.jpeg", "Test Product 1", 1m },
-                    { 2, 2m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product2.jpeg", "Test Product 2", 2m },
-                    { 3, 3m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product3.jpeg", "Test Product 3", 3m },
-                    { 4, 4m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product4.jpeg", "Test Product 4", 4m },
-                    { 5, 5m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product5.jpeg", "Test Product 5", 5m },
-                    { 6, 6m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product6.jpeg", "Test Product 6", 6m },
-                    { 7, 7m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product7.jpeg", "Test Product 7", 7m },
-                    { 8, 8m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product8.jpeg", "Test Product 8", 8m },
-                    { 9, 9m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product9.jpeg", "Test Product 9", 9m },
-                    { 10, 10m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product10.jpeg", "Test Product 10", 10m },
-                    { 11, 11m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product11.jpeg", "Test Product 11", 11m },
-                    { 12, 12m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product12.jpeg", "Test Product 12", 12m },
-                    { 13, 13m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product13.jpeg", "Test Product 13", 13m },
-                    { 14, 14m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product14.jpeg", "Test Product 14", 14m },
-                    { 15, 15m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product15.jpeg", "Test Product 15", 15m },
-                    { 16, 16m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product16.jpeg", "Test Product 16", 16m },
-                    { 17, 17m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product17.jpeg", "Test Product 17", 17m },
-                    { 18, 18m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product18.jpeg", "Test Product 18", 18m },
-                    { 19, 19m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product19.jpeg", "Test Product 19", 19m },
-                    { 20, 20m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product20.jpeg", "Test Product 20", 20m }
+                    { 1, 1m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product1.jpg", "Test Product 1", 1m },
+                    { 2, 2m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product2.jpg", "Test Product 2", 2m },
+                    { 3, 3m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product3.jpg", "Test Product 3", 3m },
+                    { 4, 4m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product4.jpg", "Test Product 4", 4m },
+                    { 5, 5m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product5.jpg", "Test Product 5", 5m },
+                    { 6, 6m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product6.jpg", "Test Product 6", 6m },
+                    { 7, 7m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product7.jpg", "Test Product 7", 7m },
+                    { 8, 8m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product8.jpg", "Test Product 8", 8m },
+                    { 9, 9m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product9.jpg", "Test Product 9", 9m },
+                    { 10, 10m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product10.jpg", "Test Product 10", 10m },
+                    { 11, 11m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product11.jpg", "Test Product 11", 11m },
+                    { 12, 12m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product12.jpg", "Test Product 12", 12m },
+                    { 13, 13m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product13.jpg", "Test Product 13", 13m },
+                    { 14, 14m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product14.jpg", "Test Product 14", 14m },
+                    { 15, 15m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product15.jpg", "Test Product 15", 15m },
+                    { 16, 16m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product16.jpg", "Test Product 16", 16m },
+                    { 17, 17m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product17.jpg", "Test Product 17", 17m },
+                    { 18, 18m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product18.jpg", "Test Product 18", 18m },
+                    { 19, 19m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product19.jpg", "Test Product 19", 19m },
+                    { 20, 20m, "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.", "product20.jpg", "Test Product 20", 20m }
                 });
 
             migrationBuilder.InsertData(

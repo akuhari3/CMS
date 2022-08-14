@@ -24,7 +24,7 @@ namespace WebShop.Data
                         ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
                         Price = 1M,
                         Quantity = 1M,
-                        ProductImage = "product1.jpeg",
+                        ProductImage = "product1.jpg",
                     },
                     new Product
                     {
@@ -33,7 +33,7 @@ namespace WebShop.Data
                         ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
                         Price = 2M,
                         Quantity = 2M,
-                        ProductImage = "product2.jpeg"
+                        ProductImage = "product2.jpg"
                     },
                     new Product
                     {
@@ -42,7 +42,7 @@ namespace WebShop.Data
                         ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
                         Price = 3M,
                         Quantity = 3M,
-                        ProductImage = "product3.jpeg",
+                        ProductImage = "product3.jpg",
                     },
                     new Product
                     {
@@ -51,7 +51,7 @@ namespace WebShop.Data
                         ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
                         Price = 4M,
                         Quantity = 4M,
-                        ProductImage = "product4.jpeg",
+                        ProductImage = "product4.jpg",
                     },
                     new Product
                     {
@@ -60,7 +60,7 @@ namespace WebShop.Data
                         ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
                         Price = 5M,
                         Quantity = 5M,
-                        ProductImage = "product5.jpeg"
+                        ProductImage = "product5.jpg"
                     },
                     new Product
                     {
@@ -69,7 +69,7 @@ namespace WebShop.Data
                         ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
                         Price = 6M,
                         Quantity = 6M,
-                        ProductImage = "product6.jpeg",
+                        ProductImage = "product6.jpg",
                     },
                     new Product
                     {
@@ -78,7 +78,7 @@ namespace WebShop.Data
                         ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
                         Price = 7M,
                         Quantity = 7M,
-                        ProductImage = "product7.jpeg",
+                        ProductImage = "product7.jpg",
                     },
                     new Product
                     {
@@ -87,7 +87,7 @@ namespace WebShop.Data
                         ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
                         Price = 8M,
                         Quantity = 8M,
-                        ProductImage = "product8.jpeg",
+                        ProductImage = "product8.jpg",
                     },
                     new Product
                     {
@@ -96,7 +96,7 @@ namespace WebShop.Data
                         ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
                         Price = 9M,
                         Quantity = 9M,
-                        ProductImage = "product9.jpeg",
+                        ProductImage = "product9.jpg",
                     },
                     new Product
                     {
@@ -105,7 +105,7 @@ namespace WebShop.Data
                         ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
                         Price = 10M,
                         Quantity = 10M,
-                        ProductImage = "product10.jpeg",
+                        ProductImage = "product10.jpg",
                     },
                     new Product
                     {
@@ -114,7 +114,7 @@ namespace WebShop.Data
                         ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
                         Price = 11M,
                         Quantity = 11M,
-                        ProductImage = "product11.jpeg",
+                        ProductImage = "product11.jpg",
                     },
                     new Product
                     {
@@ -123,7 +123,7 @@ namespace WebShop.Data
                         ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
                         Price = 12M,
                         Quantity = 12M,
-                        ProductImage = "product12.jpeg",
+                        ProductImage = "product12.jpg",
                     },
                     new Product
                     {
@@ -132,7 +132,7 @@ namespace WebShop.Data
                         ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
                         Price = 13M,
                         Quantity = 13M,
-                        ProductImage = "product13.jpeg",
+                        ProductImage = "product13.jpg",
                     },
                     new Product
                     {
@@ -141,7 +141,7 @@ namespace WebShop.Data
                         ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
                         Price = 14M,
                         Quantity = 14M,
-                        ProductImage = "product14.jpeg",
+                        ProductImage = "product14.jpg",
                     },
                     new Product
                     {
@@ -150,7 +150,7 @@ namespace WebShop.Data
                         ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
                         Price = 15M,
                         Quantity = 15M,
-                        ProductImage = "product15.jpeg",
+                        ProductImage = "product15.jpg",
                     },
                     new Product
                     {
@@ -159,7 +159,7 @@ namespace WebShop.Data
                         ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
                         Price = 16M,
                         Quantity = 16M,
-                        ProductImage = "product16.jpeg",
+                        ProductImage = "product16.jpg",
                     },
                     new Product
                     {
@@ -168,7 +168,7 @@ namespace WebShop.Data
                         ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
                         Price = 17M,
                         Quantity = 17M,
-                        ProductImage = "product17.jpeg",
+                        ProductImage = "product17.jpg",
                     },
                     new Product
                     {
@@ -177,7 +177,7 @@ namespace WebShop.Data
                         ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
                         Price = 18M,
                         Quantity = 18M,
-                        ProductImage = "product18.jpeg",
+                        ProductImage = "product18.jpg",
                     },
                     new Product
                     {
@@ -186,7 +186,7 @@ namespace WebShop.Data
                         ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
                         Price = 19M,
                         Quantity = 19M,
-                        ProductImage = "product19.jpeg",
+                        ProductImage = "product19.jpg",
                     },
                     new Product
                     {
@@ -195,7 +195,7 @@ namespace WebShop.Data
                         ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
                         Price = 20M,
                         Quantity = 20M,
-                        ProductImage = "product20.jpeg",
+                        ProductImage = "product20.jpg",
                     }
                     );
 
@@ -206,70 +206,70 @@ namespace WebShop.Data
                     Id = 1,
                     CategoryName = "Test Category 1",
                     CategoryDescription = "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ",
-                    CategoryImage = "category1.jpeg"
+                    CategoryImage = "category1.jpg"
                 },
                 new Category
                 {
                     Id = 2,
                     CategoryName = "Test Category 2",
                     CategoryDescription = "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ",
-                    CategoryImage = "category2.jpeg"
+                    CategoryImage = "category2.jpg"
                 },
                 new Category
                 {
                     Id = 3,
                     CategoryName = "Test Category 3",
                     CategoryDescription = "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ",
-                    CategoryImage = "category3.jpeg"
+                    CategoryImage = "category3.jpg"
                 },
                 new Category
                 {
                     Id = 4,
                     CategoryName = "Test Category 4",
                     CategoryDescription = "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ",
-                    CategoryImage = "category4.jpeg"
+                    CategoryImage = "category4.jpg"
                 },
                 new Category
                 {
                     Id = 5,
                     CategoryName = "Test Category 5",
                     CategoryDescription = "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ",
-                    CategoryImage = "category5.jpeg"
+                    CategoryImage = "category5.jpg"
                 },
                 new Category
                 {
                     Id = 6,
                     CategoryName = "Test Category 6",
                     CategoryDescription = "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ",
-                    CategoryImage = "category6.jpeg"
+                    CategoryImage = "category6.jpg"
                 },
                 new Category
                 {
                     Id = 7,
                     CategoryName = "Test Category 7",
                     CategoryDescription = "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ",
-                    CategoryImage = "category7.jpeg"
+                    CategoryImage = "category7.jpg"
                 },
                 new Category
                 {
                     Id = 8,
                     CategoryName = "Test Category 8",
                     CategoryDescription = "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ",
-                    CategoryImage = "category8.jpeg"
+                    CategoryImage = "category8.jpg"
                 },
                 new Category
                 {
                     Id = 9,
                     CategoryName = "Test Category 9",
                     CategoryDescription = "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ",
-                    CategoryImage = "category9.jpeg"
+                    CategoryImage = "category9.jpg"
                 },
                 new Category
                 {
                     Id = 10,
                     CategoryName = "Test Category 10",
                     CategoryDescription = "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ",
-                    CategoryImage = "category10.jpeg"
+                    CategoryImage = "category10.jpg"
                 }
                 );
 

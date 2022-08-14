@@ -1,4 +1,13 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+
+    var user = await UserManager.GetUserAsync(User);
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -21,7 +30,17 @@
        <ul class="navbar-nav">
                 <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <img src="~/images/users/new.jpg" width="40" height="40" class="rounded-circle">
+
+                        <div>
+                            @if (user.Avatar != null)
+                            {
+                                <img width="40" height="40" class="rounded-circle" src="data:image/*;base64,@Convert.ToBase64String(user.Avatar)" />
+                            }
+                            else
+                            {
+                                <span><img src="~/images/users/no-photo.jpg" width="40" height="40" class="rounded-circle"></span>
+                            }
+                        </div>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="/Admin/Dashboard">Dashboard</a>

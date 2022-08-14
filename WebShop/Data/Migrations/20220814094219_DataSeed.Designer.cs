@@ -12,8 +12,8 @@ using WebShop.Data;
 namespace WebShop.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220813172806_Data")]
-    partial class Data
+    [Migration("20220814094219_DataSeed")]
+    partial class DataSeed
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -275,70 +275,70 @@ namespace WebShop.Data.Migrations
                         {
                             Id = 1,
                             CategoryDescription = "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ",
-                            CategoryImage = "category1.jpeg",
+                            CategoryImage = "category1.jpg",
                             CategoryName = "Test Category 1"
                         },
                         new
                         {
                             Id = 2,
                             CategoryDescription = "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ",
-                            CategoryImage = "category2.jpeg",
+                            CategoryImage = "category2.jpg",
                             CategoryName = "Test Category 2"
                         },
                         new
                         {
                             Id = 3,
                             CategoryDescription = "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ",
-                            CategoryImage = "category3.jpeg",
+                            CategoryImage = "category3.jpg",
                             CategoryName = "Test Category 3"
                         },
                         new
                         {
                             Id = 4,
                             CategoryDescription = "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ",
-                            CategoryImage = "category4.jpeg",
+                            CategoryImage = "category4.jpg",
                             CategoryName = "Test Category 4"
                         },
                         new
                         {
                             Id = 5,
                             CategoryDescription = "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ",
-                            CategoryImage = "category5.jpeg",
+                            CategoryImage = "category5.jpg",
                             CategoryName = "Test Category 5"
                         },
                         new
                         {
                             Id = 6,
                             CategoryDescription = "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ",
-                            CategoryImage = "category6.jpeg",
+                            CategoryImage = "category6.jpg",
                             CategoryName = "Test Category 6"
                         },
                         new
                         {
                             Id = 7,
                             CategoryDescription = "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ",
-                            CategoryImage = "category7.jpeg",
+                            CategoryImage = "category7.jpg",
                             CategoryName = "Test Category 7"
                         },
                         new
                         {
                             Id = 8,
                             CategoryDescription = "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ",
-                            CategoryImage = "category8.jpeg",
+                            CategoryImage = "category8.jpg",
                             CategoryName = "Test Category 8"
                         },
                         new
                         {
                             Id = 9,
                             CategoryDescription = "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ",
-                            CategoryImage = "category9.jpeg",
+                            CategoryImage = "category9.jpg",
                             CategoryName = "Test Category 9"
                         },
                         new
                         {
                             Id = 10,
                             CategoryDescription = "Lorem ipsum dolor sit amet. Non earum optio et quibusdam dolor aut modi possimus aut autem facere ea possimus eius et voluptatibus suscipit. ",
-                            CategoryImage = "category10.jpeg",
+                            CategoryImage = "category10.jpg",
                             CategoryName = "Test Category 10"
                         });
                 });
@@ -474,7 +474,7 @@ namespace WebShop.Data.Migrations
                             Id = 1,
                             Price = 1m,
                             ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
-                            ProductImage = "product1.jpeg",
+                            ProductImage = "product1.jpg",
                             ProductName = "Test Product 1",
                             Quantity = 1m
                         },
@@ -483,7 +483,7 @@ namespace WebShop.Data.Migrations
                             Id = 2,
                             Price = 2m,
                             ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
-                            ProductImage = "product2.jpeg",
+                            ProductImage = "product2.jpg",
                             ProductName = "Test Product 2",
                             Quantity = 2m
                         },
@@ -492,7 +492,7 @@ namespace WebShop.Data.Migrations
                             Id = 3,
                             Price = 3m,
                             ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
-                            ProductImage = "product3.jpeg",
+                            ProductImage = "product3.jpg",
                             ProductName = "Test Product 3",
                             Quantity = 3m
                         },
@@ -501,7 +501,7 @@ namespace WebShop.Data.Migrations
                             Id = 4,
                             Price = 4m,
                             ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
-                            ProductImage = "product4.jpeg",
+                            ProductImage = "product4.jpg",
                             ProductName = "Test Product 4",
                             Quantity = 4m
                         },
@@ -510,7 +510,7 @@ namespace WebShop.Data.Migrations
                             Id = 5,
                             Price = 5m,
                             ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
-                            ProductImage = "product5.jpeg",
+                            ProductImage = "product5.jpg",
                             ProductName = "Test Product 5",
                             Quantity = 5m
                         },
@@ -519,7 +519,7 @@ namespace WebShop.Data.Migrations
                             Id = 6,
                             Price = 6m,
                             ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
-                            ProductImage = "product6.jpeg",
+                            ProductImage = "product6.jpg",
                             ProductName = "Test Product 6",
                             Quantity = 6m
                         },
@@ -528,7 +528,7 @@ namespace WebShop.Data.Migrations
                             Id = 7,
                             Price = 7m,
                             ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
-                            ProductImage = "product7.jpeg",
+                            ProductImage = "product7.jpg",
                             ProductName = "Test Product 7",
                             Quantity = 7m
                         },
@@ -537,7 +537,7 @@ namespace WebShop.Data.Migrations
                             Id = 8,
                             Price = 8m,
                             ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
-                            ProductImage = "product8.jpeg",
+                            ProductImage = "product8.jpg",
                             ProductName = "Test Product 8",
                             Quantity = 8m
                         },
@@ -546,7 +546,7 @@ namespace WebShop.Data.Migrations
                             Id = 9,
                             Price = 9m,
                             ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
-                            ProductImage = "product9.jpeg",
+                            ProductImage = "product9.jpg",
                             ProductName = "Test Product 9",
                             Quantity = 9m
                         },
@@ -555,7 +555,7 @@ namespace WebShop.Data.Migrations
                             Id = 10,
                             Price = 10m,
                             ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
-                            ProductImage = "product10.jpeg",
+                            ProductImage = "product10.jpg",
                             ProductName = "Test Product 10",
                             Quantity = 10m
                         },
@@ -564,7 +564,7 @@ namespace WebShop.Data.Migrations
                             Id = 11,
                             Price = 11m,
                             ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
-                            ProductImage = "product11.jpeg",
+                            ProductImage = "product11.jpg",
                             ProductName = "Test Product 11",
                             Quantity = 11m
                         },
@@ -573,7 +573,7 @@ namespace WebShop.Data.Migrations
                             Id = 12,
                             Price = 12m,
                             ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
-                            ProductImage = "product12.jpeg",
+                            ProductImage = "product12.jpg",
                             ProductName = "Test Product 12",
                             Quantity = 12m
                         },
@@ -582,7 +582,7 @@ namespace WebShop.Data.Migrations
                             Id = 13,
                             Price = 13m,
                             ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
-                            ProductImage = "product13.jpeg",
+                            ProductImage = "product13.jpg",
                             ProductName = "Test Product 13",
                             Quantity = 13m
                         },
@@ -591,7 +591,7 @@ namespace WebShop.Data.Migrations
                             Id = 14,
                             Price = 14m,
                             ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
-                            ProductImage = "product14.jpeg",
+                            ProductImage = "product14.jpg",
                             ProductName = "Test Product 14",
                             Quantity = 14m
                         },
@@ -600,7 +600,7 @@ namespace WebShop.Data.Migrations
                             Id = 15,
                             Price = 15m,
                             ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
-                            ProductImage = "product15.jpeg",
+                            ProductImage = "product15.jpg",
                             ProductName = "Test Product 15",
                             Quantity = 15m
                         },
@@ -609,7 +609,7 @@ namespace WebShop.Data.Migrations
                             Id = 16,
                             Price = 16m,
                             ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
-                            ProductImage = "product16.jpeg",
+                            ProductImage = "product16.jpg",
                             ProductName = "Test Product 16",
                             Quantity = 16m
                         },
@@ -618,7 +618,7 @@ namespace WebShop.Data.Migrations
                             Id = 17,
                             Price = 17m,
                             ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
-                            ProductImage = "product17.jpeg",
+                            ProductImage = "product17.jpg",
                             ProductName = "Test Product 17",
                             Quantity = 17m
                         },
@@ -627,7 +627,7 @@ namespace WebShop.Data.Migrations
                             Id = 18,
                             Price = 18m,
                             ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
-                            ProductImage = "product18.jpeg",
+                            ProductImage = "product18.jpg",
                             ProductName = "Test Product 18",
                             Quantity = 18m
                         },
@@ -636,7 +636,7 @@ namespace WebShop.Data.Migrations
                             Id = 19,
                             Price = 19m,
                             ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
-                            ProductImage = "product19.jpeg",
+                            ProductImage = "product19.jpg",
                             ProductName = "Test Product 19",
                             Quantity = 19m
                         },
@@ -645,7 +645,7 @@ namespace WebShop.Data.Migrations
                             Id = 20,
                             Price = 20m,
                             ProductDescription = "Lorem ipsum dolor sit amet. Tenetur sint cum doloremque saepe vel eius ullam et minima nihil sit harum delectus et quas reiciendis aut voluptatibus dolore.",
-                            ProductImage = "product20.jpeg",
+                            ProductImage = "product20.jpg",
                             ProductName = "Test Product 20",
                             Quantity = 20m
                         });
