@@ -2,11 +2,6 @@ html {
   font-size: 14px;
 }
 
-/*@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}*/
 
 html {
   position: relative;
@@ -25,20 +20,6 @@ body {
     background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
 }
 
-.input-symbol-euro {
-    position: relative;
-}
-
-.input-symbol-euro input {
-    padding-left: 18px;
-}
-
-.input-symbol-euro:before {
-    position: absolute;
-    top: 0;
-    content: "€";
-    left: 5px;
-}
 
 .body {
     margin: 20px auto;
@@ -64,30 +45,6 @@ body {
     background: rgb(25, 135, 84);
 }
 
-
-.nav-link{
-    color: rgb(25, 135, 84);
-    text-decoration: none;
-    background-color: transparent;
-}
-
-.nav-link.active {
-    color: #ff0000;
-    text-decoration: none;
-    background-color: transparent;
-}
-
-.nav-link.active:hover {
-    color: #ff6a00;
-    text-decoration: none;
-    background-color: transparent;
-}
-
-.nav-link:hover {
-    color: #ff6a00;
-    text-decoration: none;
-    background-color: transparent;
-}
 
 /* Style the list */
 ul.breadcrumb {

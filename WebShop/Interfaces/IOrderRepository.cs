@@ -12,11 +12,10 @@ namespace WebShop.Interfaces
         void AddOrder(Order order);
         void UpdateOrder(Order order);
         void DeleteOrder(int id);
-
+        int CountOrders();
+        decimal OrdersTotal();
         List<SelectListItem> GetUsersForDropDownList();
         List<SelectListItem> OrderStatesForDropDownList();
         Order GetCleanOrderById(int id);
-
-
     }
 }

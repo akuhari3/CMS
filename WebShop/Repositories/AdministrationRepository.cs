@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using WebShop.Data;
 using WebShop.Interfaces;
 using WebShop.Models;
@@ -153,12 +154,24 @@ namespace WebShop.Repositories
             return _roleManager.Roles.ToList();
         }
 
+        public int CountUsers()
+        {
+            var count = _userManager.Users.Count();
+            return count;
+        }
+
+        public int CountRoles()
+        {
+            var count = _roleManager.Roles.Count();
+            return count;
+        }
+
         public void AddUserRole(string roleName)
         {
             _roleManager.CreateAsync(new IdentityRole(roleName.Trim()));
         }
 
-        public List<ApplicationUser> QueryStringFilterUsers(string s, string orderBy, int perPage)
+        public List<ApplicationUser> QueryStringFilterUsers(string s)
         {
             var filter = _userManager.Users.ToList();
 
@@ -171,23 +184,6 @@ namespace WebShop.Repositories
                         || p.LastName.Contains(s, StringComparison.CurrentCultureIgnoreCase)
                         || p.Email.Contains(s, StringComparison.CurrentCultureIgnoreCase)
                     ).ToList();
-            }
-
-            switch (orderBy)
-            {
-                case "asc":
-                    filter = filter.OrderBy(m => m.Id).ToList();
-                    break;
-                case "desc":
-                    filter = filter.OrderByDescending(m => m.Id).ToList();
-                    break;
-                default:
-                    break;
-            }
-
-            if (perPage > 0)
-            {
-                filter = filter.Take(perPage).ToList();
             }
 
             return filter;

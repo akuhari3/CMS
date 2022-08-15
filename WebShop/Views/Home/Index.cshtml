@@ -1,10 +1,46 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
     ViewData["Title"] = "Home Page";
+    var user = await UserManager.GetUserAsync(User);
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+    <h1 class="display-4">Welcome to Content Management System</h1>
 </div>
+<br />
+@if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+{
+    <br />
+    <div class="text-center">
+        <a class="btn btn-secondary btn-lg" asp-area="admin" asp-controller="Admin" asp-action="admin">Go To Administration</a>
+    </div>
+}
+else{
+
+@if (SignInManager.IsSignedIn(User))
+    {
 <div class="text-center">
-    <p>@ViewBag.Message</p>
+    <h2>@ViewBag.Message</h2>
 </div>
+<br />
+<div class="text-center">
+    <h3>To view your order go to My Orders</h3>
+</div>
+<br />
+<div class="text-center">
+<a class="btn btn-secondary btn-lg" asp-area="Home" asp-controller="Home" asp-action="MyOrders">Go To My Orders</a>
+</div>
+    }
+    else{
+    <div class="text-center">
+        <h3>To start shopping press Shop</h3>
+    </div>
+    <br />
+    <div class="text-center">
+        <a class="btn btn-secondary btn-lg" asp-area="Home" asp-controller="Home" asp-action="Product">Shop</a>
+    </div>
+    }
+}

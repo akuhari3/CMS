@@ -58,29 +58,6 @@ namespace WebShop.Repositories
             _dbContext.SaveChanges();
         }
 
-        //public Product UpdateProduct(ProductViewModel productVM)
-        //{
-        //    Product product = new Product()
-        //    {
-        //        Id = productVM.Id,
-        //        ProductName = productVM.ProductName,
-        //        ProductDescription = productVM.ProductDescription,
-        //        Price = productVM.Price,
-        //        Quantity = productVM.Quantity
-        //    };
-        //    var image = _dbContext.Product.FirstOrDefault(a => a.Id == productVM.Id);
-
-        //    if (productVM.ProductImage != null)
-        //    {
-        //        product.ProductImage = productVM.ProductImage.FileName;
-        //    }
-
-        //    _dbContext.Update(product);
-        //    _dbContext.SaveChanges();
-
-        //    return product;
-        //}
-
         public Product UpdateProduct(ProductViewModel productVM)
         {
             var product = _dbContext.Product.FirstOrDefault(a => a.Id == productVM.Id);
@@ -112,6 +89,11 @@ namespace WebShop.Repositories
                 _dbContext.Product.Remove(product);
                 _dbContext.SaveChanges();
             }
+        }
+
+        public int CountProducts()
+        {
+            return _dbContext.Product.Count();
         }
 
         #endregion
@@ -167,7 +149,7 @@ namespace WebShop.Repositories
             }
         }
 
-        public List<Product> QueryStringFilterAPI(string s, string orderBy, int perPage)
+        public List<Product> QueryStringFilterAPI(string s)
         {
             var filter = _dbContext.Product.ToList();
 
@@ -179,23 +161,6 @@ namespace WebShop.Repositories
                         p => p.ProductName.Contains(s, StringComparison.CurrentCultureIgnoreCase)
                         || p.ProductDescription.Contains(s, StringComparison.CurrentCultureIgnoreCase)
                     ).ToList();
-            }
-
-            switch (orderBy)
-            {
-                case "asc":
-                    filter = filter.OrderBy(m => m.Id).ToList();
-                    break;
-                case "desc":
-                    filter = filter.OrderByDescending(m => m.Id).ToList();
-                    break;
-                default:
-                    break;
-            }
-
-            if (perPage > 0)
-            {
-                filter = filter.Take(perPage).ToList();
             }
 
             return filter;
@@ -233,7 +198,7 @@ namespace WebShop.Repositories
             return pvm;
         }
 
-        public List<Product> QueryStringFilterProducts(string s, string orderBy, int perPage)
+        public List<Product> QueryStringFilterProducts(string s)
         {
             var filter = _dbContext.Product.ToList();
 
@@ -245,23 +210,6 @@ namespace WebShop.Repositories
                         p => p.ProductName.Contains(s, StringComparison.CurrentCultureIgnoreCase)
                         || p.ProductDescription.Contains(s, StringComparison.CurrentCultureIgnoreCase)
                     ).ToList();
-            }
-
-            switch (orderBy)
-            {
-                case "asc":
-                    filter = filter.OrderBy(m => m.Id).ToList();
-                    break;
-                case "desc":
-                    filter = filter.OrderByDescending(m => m.Id).ToList();
-                    break;
-                default:
-                    break;
-            }
-
-            if (perPage > 0)
-            {
-                filter = filter.Take(perPage).ToList();
             }
 
             return filter;

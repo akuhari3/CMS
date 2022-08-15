@@ -87,21 +87,9 @@ namespace WebShop.Controllers
             var product = _dbContext.Product.FirstOrDefault(p => p.Id == id);
             return View(product);
         }
-        //public IActionResult Index(string filter, string orderBy, int perPage)
-        //{
-        //    var products = _productRepository.GetProducts();
-        //    if (filter != null)
-        //    {
-        //        orderBy = "asc";
-        //        perPage = 100;
-        //        products = _productRepository.QueryStringFilterProducts(filter, orderBy, perPage);
-        //        return View(products);
-        //    }
-        //    return View(products);
-        //}
 
 
-        public IActionResult Product(int? categoryId, string filter, string orderBy, int perPage)
+        public IActionResult Product(int? categoryId, string filter)
         {
             List<Product> products = _dbContext.Product.ToList();
 
@@ -136,9 +124,7 @@ namespace WebShop.Controllers
 
             if (filter != null)
                     {
-                        orderBy = "asc";
-                        perPage = 100;
-                        products = _productRepository.QueryStringFilterProducts(filter, orderBy, perPage);
+                        products = _productRepository.QueryStringFilterProducts(filter);
                         return View(products);
                     }
 

@@ -83,6 +83,11 @@ namespace WebShop.Repositories
             }
         }
 
+        public int CountCategories()
+        {
+            return _dbContext.Category.Count();
+        }
+
         #endregion
 
         #region Categories DDL

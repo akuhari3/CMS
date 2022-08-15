@@ -2,11 +2,28 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
+@{
+    var user = await UserManager.GetUserAsync(User);
+}
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
+        
+
+        @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+        {
+            <li class="nav-item">
+                <a class="nav-link" asp-area="Admin" asp-controller="Admin" asp-action="Admin">Administration</a>
+            </li>
+
+        }
+        else{
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Home" asp-action="MyOrders">My Orders</a>
+            </li>
+        }
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
         </li>
         <li class="nav-item">
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">

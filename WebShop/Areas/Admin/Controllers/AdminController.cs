@@ -18,23 +18,28 @@ namespace WebShop.Areas.Admin.Controllers
         private IPasswordHasher<ApplicationUser> _passwordHasher;
         private IAdministrationRepository _administrationRepository;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IProductRepository _productRepository;
+        private readonly ICategoryRepository _categoryRepository;
+        private readonly IOrderRepository _orderRepository;
 
-        public AdminController(UserManager<ApplicationUser> userManager, IPasswordHasher<ApplicationUser> passwordHasher, IAdministrationRepository administrationRepository, RoleManager<IdentityRole> roleManager)
+        public AdminController(UserManager<ApplicationUser> 
+            userManager, IPasswordHasher<ApplicationUser> passwordHasher, IAdministrationRepository administrationRepository, RoleManager<IdentityRole> roleManager, IProductRepository productRepository, ICategoryRepository categoryRepository, IOrderRepository orderRepository)
         {
             _userManager = userManager;
             _passwordHasher = passwordHasher;
             _administrationRepository = administrationRepository;
             _roleManager = roleManager;
+            _productRepository = productRepository;
+            _categoryRepository = categoryRepository;
+            _orderRepository = orderRepository;
         }
 
-        public async Task<IActionResult> Index(string filter, string orderBy, int perPage)
+        public async Task<IActionResult> Index(string filter)
         {
             var users = _userManager.Users.ToList();
-            if (filter != null || perPage > 0)
+            if (filter != null)
             {
-                orderBy = "asc";
-                //perPage = 100;
-                users = _administrationRepository.QueryStringFilterUsers(filter, orderBy, perPage);
+                users = _administrationRepository.QueryStringFilterUsers(filter);
             }
             var usersWithRoles = new List<UserRolesViewModel>();
 
@@ -129,6 +134,10 @@ namespace WebShop.Areas.Admin.Controllers
                 Active = user.Active,
                 Timezone = user.Timezone,
             };
+            if (user.Avatar != null)
+            {
+                userEditModel.GetAvatarAsBase64String = user.GetAvatar();
+            }
             if (user != null)
             {
                 return View(userEditModel);
@@ -140,6 +149,7 @@ namespace WebShop.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(UserEditModel uem)
         {
             ApplicationUser appUser = await _userManager.FindByIdAsync(uem.Id);
@@ -193,6 +203,17 @@ namespace WebShop.Areas.Admin.Controllers
                 appUser.Active = uem.Active;
                 appUser.Timezone = uem.Timezone;
 
+                if (uem.Avatar != null)
+                {
+                    using (var stream = new MemoryStream())
+                    {
+                        uem.Avatar.CopyTo(stream);
+                        var file = stream.ToArray();
+
+                        appUser.Avatar = file;
+                    }
+                }
+
                 if (!string.IsNullOrEmpty(uem.Email) && !string.IsNullOrEmpty(uem.Password))
                 {
                     IdentityResult result = await _userManager.UpdateAsync(appUser);
@@ -224,6 +245,7 @@ namespace WebShop.Areas.Admin.Controllers
 
         [HttpPost]
         [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteUser(string id)
         {
             ApplicationUser appUser = await _userManager.FindByIdAsync(id);
@@ -248,7 +270,29 @@ namespace WebShop.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RemoveImage(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var user = _userManager.Users.FirstOrDefault(u => u.Id == id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            user.Avatar = null;
+            await _userManager.UpdateAsync(user);
+
+            return RedirectToAction(nameof(Details), new { id = id });
+        }
+
+
 
         public async Task<IActionResult> AddRolesToUser(string id)
         {
@@ -318,12 +362,24 @@ namespace WebShop.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public IActionResult Admin()
+        {
+            ViewBag.CountProducts = _productRepository.CountProducts();
+            ViewBag.CountCategories = _categoryRepository.CountCategories();
+            ViewBag.CountUsers = _administrationRepository.CountUsers();
+            ViewBag.CountRoles = _administrationRepository.CountRoles();
+            ViewBag.CountOrders = _orderRepository.CountOrders();
+            ViewBag.OrdersTotal = _orderRepository.OrdersTotal();
+
+            return View();
+        }
+
         [HttpGet]
-        public ActionResult SearchByQueryString(string s, string orderBy = "asc", int perPage = 0)
+        public ActionResult SearchByQueryString(string s)
         {
             try
             {
-                var users = _administrationRepository.QueryStringFilterUsers(s, orderBy, perPage);
+                var users = _administrationRepository.QueryStringFilterUsers(s);
 
                 return View(users);
             }

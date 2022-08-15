@@ -19,7 +19,9 @@ namespace WebShop.Interfaces
         Task<IdentityResult> AddUserToRolesAsync(ApplicationUser user, IEnumerable<string> roles, List<AddRemoveUserRolesViewModel> model);
         List<IdentityRole> GetUserRoles();
         void AddUserRole(string roleName);
-        List<ApplicationUser> QueryStringFilterUsers(string s, string orderBy, int perPage);
+        int CountUsers();
+        int CountRoles();
+        List<ApplicationUser> QueryStringFilterUsers(string s);
         List<SelectListItem> TimezonesForDropDownList();
     }
 }

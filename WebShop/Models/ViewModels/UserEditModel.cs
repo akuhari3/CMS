@@ -27,5 +27,7 @@ namespace WebShop.Models
         public string Password { get; set; }
         public bool Active { get; set; }
         public Timezone Timezone { get; set; }
+        public string GetAvatarAsBase64String { get; set; }
+        public IFormFile Avatar { get; set; }
     }
 }

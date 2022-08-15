@@ -29,14 +29,12 @@ namespace WebShop.Areas.Admin.Controllers
 
         #region Product Action Methods
 
-        public IActionResult Index(string filter, string orderBy, int perPage)
+        public IActionResult Index(string filter)
         {
             var products = _productRepository.GetProducts();
             if (filter != null)
             {
-                orderBy = "asc";
-                perPage = 100;
-                products = _productRepository.QueryStringFilterProducts(filter, orderBy, perPage);
+                products = _productRepository.QueryStringFilterProducts(filter);
                 return View(products);
             }
             return View(products);

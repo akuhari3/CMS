@@ -18,5 +18,10 @@ namespace WebShop.Models
         public byte[] Avatar { get; set; }
         [ForeignKey("UserId")]
         public List<Order> Orders { get; set; }
+
+        public string GetAvatar()
+        {
+            return Convert.ToBase64String(Avatar);
+        }
     }
 }

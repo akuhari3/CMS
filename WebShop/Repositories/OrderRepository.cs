@@ -98,6 +98,24 @@ namespace WebShop.Repositories
             }
         }
 
+        public int CountOrders()
+        {
+            return _dbContext.Order.Count();
+        }
+
+        public decimal OrdersTotal()
+        {
+            var orders = _dbContext.Order.ToList();
+            decimal total = 0;
+            foreach (var order in orders)
+            {
+                total += order.Total;
+            }
+            return total;
+        }
+
+
+
         #endregion
 
         #region Order Item Repository Implementation

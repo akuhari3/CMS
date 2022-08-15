@@ -6,23 +6,16 @@
 }
 
 <ul class="breadcrumb">
-    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+    <li><a asp-controller="Admin" asp-action="Admin">Administration</a></li>
     <li>Users</li>
 </ul>
 <div class="row">
     <div class="col-xl-12 col-lg-12 col-lg-9">
         <div class="card o-hidden border-0 shadow-lg my-5">
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-end">
                 <form asp-controller="Admin" asp-action="Index">
-                    <select class="form-control" style="max-width: 70px;" id="perPage" name="perPage">
-                        <option value="5" selected="selected">5</option>
-                        <option value="10">10</option>
-                        <option value="15">15</option>
-                        <option value="20">20</option>
-                        <option value="25">25</option>
-                    </select>
                     <span>Search: </span><input type="text" name="filter" />
-                    <input type="submit" value="Search" class="btn btn-secondary" />
+                    <input type="submit" value="Search" class="btn btn-secondary m-5" />
                     <a asp-action="Create" class="btn btn-primary" style="margin:25px;">Create user</a>
                 </form>
             </div>
@@ -49,13 +42,14 @@
                                     <td>
                                         <div class="form-group row">
                                             <a asp-action="Details" asp-route-id="@user.Id" class="btn btn-sm btn-primary" style="margin:5px;">Details</a>
-                                            <a asp-action="Update" asp-route-id="@user.Id" class="btn btn-sm btn-primary" style="margin:5px;">Update</a>
+                                            <a asp-action="Update" asp-route-id="@user.Id" class="btn btn-sm btn-secondary" style="margin:5px;">Update</a>
                                             <a asp-action="Delete" asp-route-id="@user.Id" class="btn btn-sm btn-danger" style="margin:5px;">Delete</a>
-                                            <a asp-action="AddRolesToUser" class="btn btn-primary btn-sm" style="margin:5px;" asp-route-id="@user.Id">Roles</a>
+                                            <a asp-action="AddRolesToUser" class="btn btn-warning btn-sm" style="margin:5px;" asp-route-id="@user.Id">Roles</a>
                                         </div>
                                     </td>
                                 </tr>
                             }
+                            
                         </tbody>
                     </table>
                 </div>

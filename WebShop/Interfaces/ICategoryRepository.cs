@@ -11,6 +11,7 @@ namespace WebShop.Interfaces
         void AddCategory(CategoryViewModel category);
         void UpdateCategory(CategoryViewModel category);
         void DeleteCategory(int id);
+        int CountCategories();
         string UploadFile(CategoryViewModel model);
         CategoryViewModel DeleteFile(Category category);
         List<SelectListItem> CategoriesForDropDownList();

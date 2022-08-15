@@ -129,11 +129,11 @@ namespace WebShop.Areas.Admin.Controllers
         }
 
         [HttpGet("search")]
-        public ActionResult SearchByQueryString([FromQuery] string s, [FromQuery] string orderBy = "asc", [FromQuery] int perPage = 0)
+        public ActionResult SearchByQueryString([FromQuery] string s)
         {
             try
             {
-                var products = _productRepository.QueryStringFilterAPI(s, orderBy, perPage);
+                var products = _productRepository.QueryStringFilterAPI(s);
 
                 return Ok(products);
             }
