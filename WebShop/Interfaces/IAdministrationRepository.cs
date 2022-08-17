@@ -21,7 +21,7 @@ namespace WebShop.Interfaces
         void AddUserRole(string roleName);
         int CountUsers();
         int CountRoles();
-        List<ApplicationUser> QueryStringFilterUsers(string s);
+        List<ApplicationUser> QueryStringFilterUsers(string s, int perPage);
         List<SelectListItem> TimezonesForDropDownList();
     }
 }

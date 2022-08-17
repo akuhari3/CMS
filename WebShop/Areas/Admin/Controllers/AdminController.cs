@@ -10,7 +10,7 @@ using WebShop.Models;
 
 namespace WebShop.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin"), Area("Admin")]
+    [Authorize(Roles = "SuperAdmin"), Area("Admin")]
 
     public class AdminController : Controller
     {
@@ -34,12 +34,13 @@ namespace WebShop.Areas.Admin.Controllers
             _orderRepository = orderRepository;
         }
 
-        public async Task<IActionResult> Index(string filter)
+        public async Task<IActionResult> Index(string filter, int perPage)
         {
             var users = _userManager.Users.ToList();
-            if (filter != null)
+            ViewBag.Users = users.Count();
+            if (filter != null || perPage > 0)
             {
-                users = _administrationRepository.QueryStringFilterUsers(filter);
+                users = _administrationRepository.QueryStringFilterUsers(filter, perPage);
             }
             var usersWithRoles = new List<UserRolesViewModel>();
 
@@ -270,6 +271,7 @@ namespace WebShop.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RemoveImage(string id)
@@ -291,7 +293,6 @@ namespace WebShop.Areas.Admin.Controllers
 
             return RedirectToAction(nameof(Details), new { id = id });
         }
-
 
 
         public async Task<IActionResult> AddRolesToUser(string id)
@@ -329,6 +330,7 @@ namespace WebShop.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddRolesToUser(List<AddRemoveUserRolesViewModel> model, string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
@@ -362,24 +364,14 @@ namespace WebShop.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Admin()
-        {
-            ViewBag.CountProducts = _productRepository.CountProducts();
-            ViewBag.CountCategories = _categoryRepository.CountCategories();
-            ViewBag.CountUsers = _administrationRepository.CountUsers();
-            ViewBag.CountRoles = _administrationRepository.CountRoles();
-            ViewBag.CountOrders = _orderRepository.CountOrders();
-            ViewBag.OrdersTotal = _orderRepository.OrdersTotal();
-
-            return View();
-        }
+        
 
         [HttpGet]
-        public ActionResult SearchByQueryString(string s)
+        public ActionResult SearchByQueryString(string s, int perPage = 0)
         {
             try
             {
-                var users = _administrationRepository.QueryStringFilterUsers(s);
+                var users = _administrationRepository.QueryStringFilterUsers(s, perPage);
 
                 return View(users);
             }

@@ -3,17 +3,31 @@
 
 @{
     ViewData["Title"] = "Index";
+    int count = Model.Count();
 }
 
 <ul class="breadcrumb">
-    <li><a asp-controller="Admin" asp-action="Admin">Administration</a></li>
+    <li><a asp-controller="Home" asp-action="Index">Administration</a></li>
     <li>Users</li>
 </ul>
 <div class="row">
     <div class="col-xl-12 col-lg-12 col-lg-9">
         <div class="card o-hidden border-0 shadow-lg my-5">
             <div class="d-flex justify-content-end">
+                <div class="dropdown m-5">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Per Page
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" asp-action="Index" asp-route-perPage=10>10</a>
+                        <a class="dropdown-item" asp-action="Index" asp-route-perPage=20>20</a>
+                        <a class="dropdown-item" asp-action="Index" asp-route-perPage=50>50</a>
+                        <a class="dropdown-item" asp-action="Index" asp-route-perPage=100>100</a>
+                    </div>
+                </div>
+                <div class="text-muted  m-5">Showing @count of @ViewBag.Users users</div>
                 <form asp-controller="Admin" asp-action="Index">
+                    @Html.AntiForgeryToken()
                     <span>Search: </span><input type="text" name="filter" />
                     <input type="submit" value="Search" class="btn btn-secondary m-5" />
                     <a asp-action="Create" class="btn btn-primary" style="margin:25px;">Create user</a>

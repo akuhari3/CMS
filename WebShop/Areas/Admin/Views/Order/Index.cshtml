@@ -3,7 +3,7 @@
     ViewData["Title"] = "Orders";
 }
 <ul class="breadcrumb">
-    <li><a asp-controller="Admin" asp-action="Admin">Administration</a></li>
+    <li><a asp-controller="Home" asp-action="Index">Administration</a></li>
     <li>Orders</li>
 </ul>
 <p>
@@ -37,7 +37,7 @@ else
                             {
                                 <tr>
                                     <td>@Html.DisplayFor(modelItem => item.Id)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.DateCreated)</td>
+                                    <td>@item.DateCreated.ToString("dd/MM/yyyy HH:mm")</td>
                                     <td>@Html.DisplayFor(modelItem => item.BillingEmail)</td>
                                     <td>@Html.DisplayFor(modelItem => item.OrderState)</td>
                                     <td>@Html.DisplayFor(modelItem => item.Total)$</td>

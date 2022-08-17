@@ -1,6 +1,7 @@
 ﻿@model List<Product>
 @{
     ViewData["Title"] = "Product";
+    int count = Model.Count();
 }
 
 <h3>Product list</h3>
@@ -16,10 +17,23 @@
             }
         </div>
     </div>
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Per Page
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" asp-route-categoryId="@ViewBag.CategoryId" asp-route-filter="@ViewBag.Filter" asp-action="Product" asp-route-perPage=10>10</a>
+            <a class="dropdown-item" asp-route-categoryId="@ViewBag.CategoryId" asp-route-filter="@ViewBag.Filter" asp-action="Product" asp-route-perPage=20>20</a>
+            <a class="dropdown-item" asp-route-categoryId="@ViewBag.CategoryId" asp-route-filter="@ViewBag.Filter" asp-action="Product" asp-route-perPage=50>50</a>
+            <a class="dropdown-item" asp-route-categoryId="@ViewBag.CategoryId" asp-route-filter="@ViewBag.Filter" asp-action="Product" asp-route-perPage=100>100</a>
+        </div>
+    </div>
+    <div class="text-muted">Showing @count of @ViewBag.Products products</div>
     <div class="col-md-2">
         <a asp-action="Product" class="btn btn-warning">Reset filters</a>
     </div>
     <form asp-controller="Home" asp-action="Product">
+        @Html.AntiForgeryToken()
         <span>Search: </span><input type="text" name="filter" />
         <input type="submit" value="Search" class="btn btn-secondary" />
     </form>
@@ -30,7 +44,9 @@
     {
         <div class="d-flex align-items-start" style="padding: 20px">
             <div class="card" style="width:300px">
-                <img class="card-img-top" src="~/images/products/@item.ProductImage" alt="Card image">
+                <a href="/Home/ProductDetails/@item.Id">
+                    <img class="card-img-top" src="~/images/products/@item.ProductImage" alt="Card image">
+                    </a>
                 <div class="card-body">
                     <h4 class="card-title">@item.ProductName</h4>
                     <p class="card-text">
@@ -51,6 +67,7 @@
                         </table>
                     </p>
                     <form method="post" asp-controller="Cart" asp-action="AddToCart">
+                        @Html.AntiForgeryToken()
                         <input type="hidden" name="productId" value="@item.Id" />
                         <input type="hidden" name="quantity" value="1" />
                         <div class="form-group d-flex justify-content-between">

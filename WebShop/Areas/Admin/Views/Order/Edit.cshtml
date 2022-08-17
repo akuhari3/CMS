@@ -3,7 +3,7 @@
     ViewData["Title"] = "Edit";
 }
 <ul class="breadcrumb">
-    <li><a asp-controller="Admin" asp-action="Admin">Administration</a></li>
+    <li><a asp-controller="Home" asp-action="Index">Administration</a></li>
     <li><a asp-controller="Order" asp-action="Index">Orders</a></li>
     <li>Edit order @Model.Id</li>
 </ul>
@@ -13,6 +13,7 @@
             <div class="card-body">
                 <div class="col-lg-12">
                     <form asp-action="Edit">
+                        @Html.AntiForgeryToken()
                         <div asp-validation-summary="All" class="text-danger"></div>
                         <input type="hidden" asp-for="Id" />
                         <input type="hidden" asp-for="Total" />

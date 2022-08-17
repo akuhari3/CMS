@@ -4,7 +4,7 @@
 }
 
 <ul class="breadcrumb">
-    <li><a asp-controller="Admin" asp-action="Admin">Administration</a></li>
+    <li><a asp-controller="Home" asp-action="Index">Administration</a></li>
     <li><a asp-controller="Order" asp-action="Index">Orders</a></li>
     <li>Order details</li>
 </ul>
@@ -70,7 +70,7 @@
     <b>
         @Html.DisplayNameFor(model => model.DateCreated)
     </b>
-    @Html.DisplayFor(model => model.DateCreated)
+    @Model.DateCreated.ToString("dd/MM/yyyy HH:mm")
     <b>
         @Html.DisplayNameFor(model => model.OrderState)
     </b>

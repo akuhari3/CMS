@@ -149,7 +149,7 @@ namespace WebShop.Repositories
             }
         }
 
-        public List<Product> QueryStringFilterAPI(string s)
+        public List<Product> QueryStringFilterAPI(string s, int perPage)
         {
             var filter = _dbContext.Product.ToList();
 
@@ -161,6 +161,48 @@ namespace WebShop.Repositories
                         p => p.ProductName.Contains(s, StringComparison.CurrentCultureIgnoreCase)
                         || p.ProductDescription.Contains(s, StringComparison.CurrentCultureIgnoreCase)
                     ).ToList();
+            }
+
+            return filter;
+        }
+
+        public List<Product> QueryStringFilterProducts(string s, int perPage, int categoryId)
+        {
+            var filter = _dbContext.Product.ToList();
+
+            if (!string.IsNullOrEmpty(s))
+            {
+                filter = filter
+                    .Where
+                    (
+                        p => p.ProductName.Contains(s, StringComparison.CurrentCultureIgnoreCase)
+                        || p.ProductDescription.Contains(s, StringComparison.CurrentCultureIgnoreCase)
+                    ).ToList();
+            }
+
+            if (categoryId != 0)
+            {
+                filter =
+                    (
+                        from product in _dbContext.Product
+                        join proCat in _dbContext.ProductCategory on product.Id equals proCat.ProductId
+                        where proCat.CategoryId == categoryId
+                        select new Product
+                        {
+                            Id = product.Id,
+                            ProductName = product.ProductName,
+                            ProductDescription = product.ProductDescription,
+                            Quantity = product.Quantity,
+                            Price = product.Price,
+                            ProductImage = product.ProductImage
+                        }
+
+                    ).ToList();
+            }
+
+            if (perPage > 0)
+            {
+                filter = filter.Take(perPage).ToList();
             }
 
             return filter;
@@ -196,23 +238,6 @@ namespace WebShop.Repositories
                 Quantity = product.Quantity
             };
             return pvm;
-        }
-
-        public List<Product> QueryStringFilterProducts(string s)
-        {
-            var filter = _dbContext.Product.ToList();
-
-            if (!string.IsNullOrEmpty(s))
-            {
-                filter = filter
-                    .Where
-                    (
-                        p => p.ProductName.Contains(s, StringComparison.CurrentCultureIgnoreCase)
-                        || p.ProductDescription.Contains(s, StringComparison.CurrentCultureIgnoreCase)
-                    ).ToList();
-            }
-
-            return filter;
         }
 
         #endregion

@@ -5,7 +5,7 @@
 
 <ul class="breadcrumb">
     <
-    <li><a asp-controller="Admin" asp-action="Admin">Administration</a></li>
+    <li><a asp-controller="Home" asp-action="Index">Administration</a></li>
     <li><a asp-controller="ProductCategory" asp-action="Index" asp-route-productId="@ViewBag.ProductId">Product categories</a></li>
     <li>Edit product category</li>
 </ul>
@@ -15,6 +15,7 @@
             <div class="card-body p-0">
                 <div class="p-5">
                     <form asp-action="Edit">
+                        @Html.AntiForgeryToken()
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <input type="hidden" asp-for="Id" />
                         <input type="hidden" asp-for="ProductId" />

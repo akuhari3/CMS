@@ -84,6 +84,7 @@ namespace WebShop.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult PostProduct([FromBody] Product product)
         {
             try
@@ -129,11 +130,11 @@ namespace WebShop.Areas.Admin.Controllers
         }
 
         [HttpGet("search")]
-        public ActionResult SearchByQueryString([FromQuery] string s)
+        public ActionResult SearchByQueryString([FromQuery] string s, [FromQuery] int perPage = 0)
         {
             try
             {
-                var products = _productRepository.QueryStringFilterAPI(s);
+                var products = _productRepository.QueryStringFilterAPI(s, perPage);
 
                 return Ok(products);
             }

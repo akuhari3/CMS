@@ -20,13 +20,14 @@ namespace WebShop.Controllers
         {
             List<CartItem> cart = HttpContext.Session.GetObjectsFromJson<List<CartItem>>(_sessionKeyName) ?? new List<CartItem>();
 
-            decimal sum = default(decimal);
+            decimal sum = 0;
             ViewBag.TotalPrice = cart.Sum(item => sum + item.GetTotal());
 
             return View(cart);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult AddToCart(int productId)
         {
             List<CartItem> cartSession = HttpContext.Session.GetObjectsFromJson<List<CartItem>>(_sessionKeyName) ?? new List<CartItem>();

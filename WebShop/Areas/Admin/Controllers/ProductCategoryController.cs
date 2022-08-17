@@ -5,7 +5,7 @@ using WebShop.Models;
 
 namespace WebShop.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin"), Area("Admin")]
+    [Authorize(Roles = "SuperAdmin, Admin"), Area("Admin")]
     public class ProductCategoryController : Controller
     {
         #region Fields
@@ -46,6 +46,7 @@ namespace WebShop.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Create(ProductCategory productCategory)
         {
             if (ModelState.IsValid)
@@ -66,6 +67,7 @@ namespace WebShop.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Edit(ProductCategory productCategory)
         {
             if (ModelState.IsValid)
@@ -85,6 +87,7 @@ namespace WebShop.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [ActionName("Delete")]
         public IActionResult DeleteProductCategory(int id)
         {

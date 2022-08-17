@@ -171,7 +171,7 @@ namespace WebShop.Repositories
             _roleManager.CreateAsync(new IdentityRole(roleName.Trim()));
         }
 
-        public List<ApplicationUser> QueryStringFilterUsers(string s)
+        public List<ApplicationUser> QueryStringFilterUsers(string s, int perPage)
         {
             var filter = _userManager.Users.ToList();
 
@@ -184,6 +184,11 @@ namespace WebShop.Repositories
                         || p.LastName.Contains(s, StringComparison.CurrentCultureIgnoreCase)
                         || p.Email.Contains(s, StringComparison.CurrentCultureIgnoreCase)
                     ).ToList();
+            }
+
+            if (perPage > 0)
+            {
+                filter = filter.Take(perPage).ToList();
             }
 
             return filter;

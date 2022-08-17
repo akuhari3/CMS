@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 
 namespace WebShop.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin"), Area("Admin")]
+    [Authorize(Roles = "SuperAdmin, Admin"), Area("Admin")]
     public class ProductController : Controller
     {
         #region Fields
@@ -29,12 +29,14 @@ namespace WebShop.Areas.Admin.Controllers
 
         #region Product Action Methods
 
-        public IActionResult Index(string filter)
+        public IActionResult Index(string filter, int perPage, int categoryId)
         {
             var products = _productRepository.GetProducts();
-            if (filter != null)
+            ViewBag.Products = products.Count();
+
+            if (filter != null || perPage > 0)
             {
-                products = _productRepository.QueryStringFilterProducts(filter);
+                products = _productRepository.QueryStringFilterProducts(filter, perPage, categoryId);
                 return View(products);
             }
             return View(products);
@@ -145,6 +147,7 @@ namespace WebShop.Areas.Admin.Controllers
 
         [HttpPost]
         [ActionName("DeleteProductPhoto")]
+        [ValidateAntiForgeryToken]
         public IActionResult DeleteProductPhoto(int id)
         {
             var product = _productRepository.GetProductById(id);

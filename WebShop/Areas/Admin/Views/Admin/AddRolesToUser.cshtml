@@ -3,7 +3,7 @@
     ViewData["Title"] = "Add/Remove roles";
 }
 <ul class="breadcrumb">
-    <li><a asp-controller="Admin" asp-action="Admin">Administration</a></li>
+    <li><a asp-controller="Home" asp-action="Index">Administration</a></li>
    <li><a asp-controller="Admin" asp-action="Index">Users</a></li>
    <li>Add/Remove roles to user @ViewBag.UserName</li>
 </ul>
@@ -13,6 +13,7 @@
          <div class="card-body p-0">
             <div class="p-5">
                <form method="post">
+                        @Html.AntiForgeryToken()
                   <input type="hidden" name="userId" value="@ViewBag.UserId" />
                   <div class="card">
                      <div class="card-header">

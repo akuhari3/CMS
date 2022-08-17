@@ -10,7 +10,7 @@ using WebShop.Models.ViewModels;
 
 namespace WebShop.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin"), Area("Admin")]
+    [Authorize(Roles = "SuperAdmin, Admin"), Area("Admin")]
     public class CategoryController : Controller
     {
         #region Fields
@@ -126,6 +126,7 @@ namespace WebShop.Areas.Admin.Controllers
 
         [HttpPost]
         [ActionName("DeleteCategoryPhoto")]
+        [ValidateAntiForgeryToken]
         public IActionResult DeleteCategoryPhoto(int id)
         {
             var category = _categoryRepository.GetCategoryById(id);

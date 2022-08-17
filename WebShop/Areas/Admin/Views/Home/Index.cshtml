@@ -1,9 +1,132 @@
-﻿<ul class="breadcrumb">
-  <li>Home</li>
-</ul>
-@{
-    ViewData["Title"] = "Index";
+﻿@{
+    ViewData["Title"] = "Admin";
 }
 
-<h1>Index</h1>
+<ul class="breadcrumb">
+    <li>Administration</li>
+</ul>
 
+<h1 style="text-align: center;">Administration</h1>
+
+<div class="row justify-content-center">
+    <div class="col-xl-3 col-lg-3 col-md-3">
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-header">
+                <h1 style="text-align: center;">Products</h1>
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-6">
+                        Products Count:
+                    </dt>
+                    <dd class="col-md-6">
+                        @ViewBag.CountProducts
+                    </dd>
+                </dl>
+            </div>
+            <div class="card-footer text-center">
+                <a class="btn btn-secondary btn-lg" asp-area="Admin" asp-controller="Product" asp-action="Index">Go To Products</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-lg-3 col-md-3">
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <div class="card-header">
+                    <h1 style="text-align: center;">Categories</h1>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-6">
+                            Category Count:
+                        </dt>
+                        <dd class="col-md-6">
+                            @ViewBag.CountCategories
+                        </dd>
+                    </dl>
+                </div>
+                <div class="card-footer text-center">
+                    <a class="btn btn-secondary btn-lg" asp-area="Admin" asp-controller="Category" asp-action="Index">Go To Categories</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-3 col-md-3">
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <div class="card-header">
+                    <h1 style="text-align: center;">Orders</h1>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-6">
+                            Orders Count:
+                        </dt>
+                        <dd class="col-md-6">
+                            @ViewBag.CountOrders
+                        </dd>
+                    </dl>
+                    <dl class="row">
+                        <dt class="col-sm-6">
+                            Orders Total:
+                        </dt>
+                        <dd class="col-md-6">
+                            @ViewBag.OrdersTotal$
+                        </dd>
+                    </dl>
+                </div>
+                <div class="card-footer text-center">
+                    <a class="btn btn-secondary btn-lg" asp-area="Admin" asp-controller="Order" asp-action="Index">Go To Orders</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    @if (User.IsInRole("SuperAdmin"))
+    {
+        <div class="col-xl-3 col-lg-3 col-md-3">
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                    <div class="card-header">
+                        <h1 style="text-align: center;">Users</h1>
+                    </div>
+                    <div class="card-body">
+                        <dl class="row">
+                            <dt class="col-sm-6">
+                                Users Count:
+                            </dt>
+                            <dd class="col-md-6">
+                                @ViewBag.CountUsers
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a class="btn btn-secondary btn-lg" asp-area="Admin" asp-controller="Admin" asp-action="Index">Go To Users</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3">
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                    <div class="card-header">
+                        <h1 style="text-align: center;">Roles</h1>
+                    </div>
+                    <div class="card-body">
+                        <dl class="row">
+                            <dt class="col-sm-6">
+                                Roles Count:
+                            </dt>
+                            <dd class="col-md-6">
+                                @ViewBag.CountRoles
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a class="btn btn-secondary btn-lg" asp-area="Admin" asp-controller="RoleManager" asp-action="Index">Go To Roles</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

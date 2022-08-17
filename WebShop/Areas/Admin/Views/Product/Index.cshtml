@@ -2,18 +2,35 @@
 
 @{
     ViewData["Title"] = "Index";
+    int count = Model.Count();
 }
 
 <ul class="breadcrumb">
-    <li><a asp-controller="Admin" asp-action="Admin">Administration</a></li>
+    <li><a asp-controller="Home" asp-action="Index">Administration</a></li>
     <li>Products</li>
 </ul>
 <div class="d-flex justify-content-between">
-    <a class="btn btn-primary" asp-action="Create">Create new product</a>
+    
+    <div class="dropdown m-5">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Per Page
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" asp-action="Index" asp-route-perPage=10>10</a>
+            <a class="dropdown-item" asp-action="Index" asp-route-perPage=20>20</a>
+            <a class="dropdown-item" asp-action="Index" asp-route-perPage=50>50</a>
+            <a class="dropdown-item" asp-action="Index" asp-route-perPage=100>100</a>
+        </div>
+    </div>
+    <div class="text-muted m-5">Showing @count of @ViewBag.Products products</div>
     <form asp-controller="Product" asp-action="Index">
+        @Html.AntiForgeryToken()
+        <div class="m-5">
         <span>Search: </span><input type="text" name="filter" />
         <input type="submit" value="Search" class="btn btn-secondary" />
+        </div>
     </form>
+    <a class="btn btn-primary m-5" asp-action="Create">Create new product</a>
 </div>
 @if (Model.Count == 0)
 {

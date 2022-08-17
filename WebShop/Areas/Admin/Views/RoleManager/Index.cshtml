@@ -5,10 +5,11 @@
 }
 
 <ul class="breadcrumb">
-    <li><a asp-controller="Admin" asp-action="Admin">Administration</a></li>
+    <li><a asp-controller="Home" asp-action="Index">Administration</a></li>
     <li>Role manager</li>
 </ul>
 <form method="post" asp-action="AddRole" asp-controller="RoleManager">
+    @Html.AntiForgeryToken()
     <div class="input-group">
         <input name="roleName" class="form-control w-25" />
         <span class="input-group-btn">

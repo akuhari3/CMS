@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebShop.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin"), Area("Admin")]
+    [Authorize(Roles = "SuperAdmin"), Area("Admin")]
 
     public class RoleManagerController : Controller
     {
@@ -25,6 +25,7 @@ namespace WebShop.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddRole(string roleName)
         {
             if(roleName != null)

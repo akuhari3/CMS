@@ -5,7 +5,7 @@
 }
 
 <ul class="breadcrumb">
-    <li><a asp-controller="Admin" asp-action="Admin">Administration</a></li>
+    <li><a asp-controller="Home" asp-action="Index">Administration</a></li>
     <li><a asp-controller="Product" asp-action="Index">Products</a></li>
     <li>Product details</li>
 </ul>
@@ -53,6 +53,7 @@
         @if (Model.ProductImage != null)
         {
             <form method="post" asp-action="DeleteProductPhoto" asp-route-id="@Model.Id">
+                @Html.AntiForgeryToken()
                 <button type="submit" class="btn btn-danger" style="width:auto">Delete image</button>
             </form>
         }

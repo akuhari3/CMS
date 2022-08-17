@@ -10,7 +10,7 @@ using WebShop.Models;
 namespace WebShop.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "SuperAdmin, Admin")]
     public class OrderController : Controller
     {
         #region Fields
@@ -71,6 +71,7 @@ namespace WebShop.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Create(Order order)
         {
             if (ModelState.IsValid)
@@ -105,6 +106,7 @@ namespace WebShop.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, Order order)
         {
             if (id != order.Id)
@@ -144,6 +146,7 @@ namespace WebShop.Areas.Admin.Controllers
 
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult DeleteOrder(int id)
         {
             if (id == 0)
@@ -169,6 +172,7 @@ namespace WebShop.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult AddOrderItem([Bind("OrderId, ProductId, Price, Quantity, Total")] OrderItem orderItem)
         {
             if (ModelState.IsValid)

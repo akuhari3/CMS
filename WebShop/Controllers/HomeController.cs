@@ -2,13 +2,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
 using WebShop.Data;
 using WebShop.Extensions;
 using WebShop.Interfaces;
@@ -39,7 +36,11 @@ namespace WebShop.Controllers
 
         public IActionResult Index(string? message)
         {
-            ViewBag.Message = message;
+            if (message != null)
+            {
+                ViewBag.Message = message;
+            }
+            
 
             return View();
         }
@@ -89,30 +90,23 @@ namespace WebShop.Controllers
         }
 
 
-        public IActionResult Product(int? categoryId, string filter)
+        public IActionResult Product(int categoryId, string filter, int perPage)
         {
-            List<Product> products = _dbContext.Product.ToList();
-
-            if (categoryId != null)
+            if (filter != null)
             {
-                products =
-                    (
-                        from product in _dbContext.Product
-                        join proCat in _dbContext.ProductCategory on product.Id equals proCat.ProductId
-                        where proCat.CategoryId == categoryId
-                        select new Product
-                        {
-                            Id = product.Id,
-                            ProductName = product.ProductName,
-                            ProductDescription = product.ProductDescription,
-                            Quantity = product.Quantity,
-                            Price = product.Price,
-                            ProductImage = product.ProductImage
-                        }
-                    ).ToList();
+                ViewBag.Filter = filter;
             }
+            List<Product> products = _dbContext.Product.ToList();
+            ViewBag.Products = products.Count();
+
+            if (categoryId != 0)
+            {
+                ViewBag.CategoryId = categoryId;
+            }
+            
 
             ViewBag.Categories = _dbContext.Category.Select
+
                 (
                     c => new SelectListItem
                     {
@@ -122,13 +116,16 @@ namespace WebShop.Controllers
                     }
                 );
 
-            if (filter != null)
-                    {
-                        products = _productRepository.QueryStringFilterProducts(filter);
-                        return View(products);
-                    }
 
+            if (filter != null || perPage > 0 || categoryId != 0)
+            {
+                products = _productRepository.QueryStringFilterProducts(filter, perPage, categoryId);
                 return View(products);
+            }
+
+            var rnd = new Random();
+
+            return View(products.OrderBy(item => rnd.Next()).Take(10).ToList());
         }
 
 
@@ -151,6 +148,7 @@ namespace WebShop.Controllers
 
         [Authorize]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult CreateOrder(Order order)
         {
             List<CartItem> cartItems = HttpContext.Session.GetObjectsFromJson<List<CartItem>>(_sessionKeyName) ?? new List<CartItem>();
