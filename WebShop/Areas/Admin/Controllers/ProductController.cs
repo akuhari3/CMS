@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 
 namespace WebShop.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "SuperAdmin, Admin"), Area("Admin")]
+    [Area("Admin")]
     public class ProductController : Controller
     {
         #region Fields
@@ -28,7 +28,7 @@ namespace WebShop.Areas.Admin.Controllers
         #endregion
 
         #region Product Action Methods
-
+        [Authorize(Roles = "SuperAdmin, Admin, Operater")]
         public IActionResult Index(string filter, int perPage, int categoryId)
         {
             var products = _productRepository.GetProducts();
@@ -41,7 +41,7 @@ namespace WebShop.Areas.Admin.Controllers
             }
             return View(products);
         }
-
+        [Authorize(Roles = "SuperAdmin, Admin, Operater")]
         public IActionResult Details(int id)
         {
             if (id == 0)
@@ -59,12 +59,13 @@ namespace WebShop.Areas.Admin.Controllers
             return View(product);
 
         }
-
+        [Authorize(Roles = "SuperAdmin, Admin")]
         public IActionResult Create()
         {
             return View();
         }
 
+        [Authorize(Roles = "SuperAdmin, Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(ProductViewModel product)
@@ -79,6 +80,7 @@ namespace WebShop.Areas.Admin.Controllers
             return View(product);
         }
 
+        [Authorize(Roles = "SuperAdmin, Admin")]
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -100,6 +102,7 @@ namespace WebShop.Areas.Admin.Controllers
             return View(productViewModel);
         }
 
+        [Authorize(Roles = "SuperAdmin, Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, ProductViewModel product)
@@ -114,12 +117,14 @@ namespace WebShop.Areas.Admin.Controllers
             return View(product);
         }
 
+        [Authorize(Roles = "SuperAdmin, Admin")]
         public IActionResult Delete(int id)
         {
             var product = _productRepository.GetProductById(id);
             return View(product);
         }
 
+        [Authorize(Roles = "SuperAdmin, Admin")]
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -145,6 +150,7 @@ namespace WebShop.Areas.Admin.Controllers
             return fileName;
         }
 
+        [Authorize(Roles = "SuperAdmin, Admin")]
         [HttpPost]
         [ActionName("DeleteProductPhoto")]
         [ValidateAntiForgeryToken]
