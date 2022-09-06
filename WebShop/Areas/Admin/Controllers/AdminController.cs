@@ -178,27 +178,16 @@ namespace WebShop.Areas.Admin.Controllers
                 {
                     appUser.FirstName = uem.FirstName;
                 }
-                else
-                {
-                    ModelState.AddModelError("", "First name cannot be empty!");
-                }
+
 
                 if (!string.IsNullOrEmpty(uem.LastName))
                 {
                     appUser.LastName = uem.LastName;
                 }
-                else
-                {
-                    ModelState.AddModelError("", "Last name cannot be empty!");
-                }
 
                 if (!string.IsNullOrEmpty(uem.UserName))
                 {
                     appUser.UserName = uem.UserName;
-                }
-                else
-                {
-                    ModelState.AddModelError("", "User name cannot be empty!");
                 }
 
                 appUser.Active = uem.Active;
